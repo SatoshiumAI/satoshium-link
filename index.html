@@ -184,26 +184,6 @@ fetch("/topbar.html")
   .then(data => {
     document.getElementById("topbar-container").innerHTML = data;
 
-    const path = window.location.pathname.toLowerCase();
-
-    function setActive(key){
-      const el = document.querySelector(`.topbar .nav a[data-nav="${key}"]`);
-      if (el) el.classList.add("active");
-    }
-
-    setActive("link");
-  });
-</script>
-
-</head>
-<body id="top">
-<div id="topbar-container"></div>
-<script>
-fetch("/topbar.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("topbar-container").innerHTML = data;
-
     function setActive(key){
       const el = document.querySelector(`.topbar .nav a[data-nav="${key}"]`);
       if (el) el.classList.add("active");
