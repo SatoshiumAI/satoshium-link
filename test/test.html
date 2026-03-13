@@ -3,21 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Satoshium — Gateway Layer</title>
+<title>Satoshium — Dual Nav Test</title>
 
 <style>
 :root{
- --card-wm: url('/assets/seal.png');
- --bg:#07090d;
- --panel:#0c1018;
- --text:#e8edf7;
- --muted:#9aa7bd;
- --gold:#d6a34a;
- --gold2:#f4c36a;
- --line:rgba(214,163,74,.18);
- --sidebar-w:270px;
+  --bg:#07090d;
+  --panel:#0c1018;
+  --text:#e8edf7;
+  --muted:#9aa7bd;
+  --gold:#d6a34a;
+  --gold2:#f4c36a;
+  --line:rgba(214,163,74,.18);
+
+  --topbar-h:68px;
+  --sidebar-w:220px;
 }
+
 *{box-sizing:border-box}
+
 html,body{
   margin:0;
   padding:0;
@@ -26,316 +29,123 @@ html,body{
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   line-height:1.55;
 }
-body.has-topbar{
-  padding-top:80px;
-}
-body.has-sidebar{
-  padding-top:0;
-  padding-left:var(--sidebar-w);
-}
-.reflection{
-  margin-top:40px;
-  margin-bottom:40px;
-  color:var(--muted);
-}
+
 a{color:var(--gold2);text-decoration:none}
 a:hover{color:var(--gold)}
-.wrap{max-width:1080px;margin:0 auto;padding:0 18px}
-.content{padding:34px 18px 60px}
-h1,h2,h3{margin:0 0 10px}
-h1{font-size:34px;color:var(--gold2);line-height:1.15}
-h2{font-size:22px;color:var(--gold2);margin-top:0}
-h3{font-size:15px;color:var(--text)}
-p,li{color:var(--text)}
-hr{border:none;border-top:1px solid var(--line);margin:22px 0}
 
-.hero{
-  position:relative;
-  overflow:hidden;
+.page-shell{
+  padding-top:var(--topbar-h);
+  padding-left:var(--sidebar-w);
+  min-height:100vh;
+}
+
+.page-content{
+  padding:32px 24px 60px;
+  max-width:1100px;
+}
+
+.hero,
+.card{
   border:1px solid var(--line);
   border-radius:20px;
+  background:linear-gradient(to bottom right, rgba(12,16,24,.96), rgba(12,16,24,.90));
+  box-shadow:0 0 0 1px rgba(214,163,74,.08), 0 20px 50px rgba(0,0,0,.45);
+}
+
+.hero{
   padding:28px 22px;
-  margin-bottom:18px;
-  background:
-    radial-gradient(circle at top right, rgba(214,163,74,.10), transparent 28%),
-    linear-gradient(to bottom right, rgba(12,16,24,.96), rgba(12,16,24,.90));
-  box-shadow:0 0 0 1px rgba(214,163,74,.08),0 20px 50px rgba(0,0,0,.45);
+  margin-bottom:20px;
 }
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:-80px;
-  background-image:var(--card-wm);
-  background-repeat:no-repeat;
-  background-size:min(860px,72vw);
-  background-position:right -180px center;
-  opacity:.035;
-  filter:blur(1px);
-  pointer-events:none;
-  z-index:0;
-}
-.hero > *{position:relative;z-index:1}
 
 .card{
-  position:relative;
-  overflow:hidden;
-  background:linear-gradient(to bottom right,rgba(12,16,24,.94),rgba(12,16,24,.88));
-  border:1px solid rgba(214,163,74,.15);
-  border-radius:16px;
-  padding:16px 16px;
+  padding:18px;
   margin:16px 0;
-  box-shadow:0 0 0 1px rgba(214,163,74,.08),0 20px 50px rgba(0,0,0,.45);
-  transition:transform .18s ease, box-shadow .18s ease;
-}
-.card::before{
-  content:"";
-  position:absolute;
-  inset:-60px;
-  background-image:var(--card-wm);
-  background-repeat:no-repeat;
-  background-size:min(720px,70vw);
-  background-position:right -140px center;
-  opacity:0.028;
-  filter:blur(1px);
-  pointer-events:none;
-  z-index:0;
-}
-.card > *{position:relative;z-index:1}
-.card:hover{
-  transform:translateY(-3px);
-  box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
 
-.muted{color:var(--muted)}
-.pill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 10px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:rgba(214,163,74,.08);
+h1{
+  margin:0 0 12px;
   color:var(--gold2);
-  font-size:12px;
-  font-weight:700
-}
-.statline{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:14px;
-}
-.stat{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 10px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:rgba(214,163,74,.06);
-  color:var(--text);
-  font-size:12px;
-}
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px
-}
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px
-}
-.span-2{
-  grid-column:1 / -1;
-}
-.note{
-  margin-top:10px;
-  padding:12px 14px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:rgba(214,163,74,.05);
-  color:var(--muted);
-  font-size:14px;
-}
-ul{margin:8px 0 0 18px}
-
-/* Hide standalone preview content that exists inside sidebar.html */
-#sidebar-container .page-demo{
-  display:none !important;
+  font-size:34px;
 }
 
-@media (max-width:900px){
-  .grid-3{grid-template-columns:1fr}
+h2{
+  color:var(--gold2);
+  margin:0 0 10px;
 }
-@media (max-width:760px){
-  .grid-2{grid-template-columns:1fr}
-  h1{font-size:30px}
+
+p{
+  margin:0 0 14px;
 }
-@media (max-width:900px){
-  body.has-sidebar{
+
+@media (max-width:980px){
+  .page-shell{
     padding-left:0;
   }
 }
 </style>
 </head>
-<body id="top" class="has-topbar">
+<body>
+
 <div id="topbar-container"></div>
 <div id="sidebar-container"></div>
 
-<script>
-  const layoutMode = 'topbar'; // change to 'sidebar' to test the sidebar instead
+<main class="page-shell">
+  <div class="page-content">
 
-  if (layoutMode === 'topbar') {
-    fetch('/components/topbar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('topbar-container').innerHTML = data;
-        const el = document.querySelector('.topbar .nav a[data-nav="link"]');
-        if (el) el.classList.add('active');
-      });
-  }
+    <section class="hero">
+      <h1>Satoshium Link Test Page</h1>
+      <p>
+        This page is testing a fixed topbar + fixed left sidebar layout.
+        The content scrolls while both navigation layers remain in place.
+      </p>
+    </section>
 
-  if (layoutMode === 'sidebar') {
-    document.body.classList.remove('has-topbar');
-    document.body.classList.add('has-sidebar');
+    <section class="card">
+      <h2>Why this works</h2>
+      <p>
+        The topbar is fixed across the top. The sidebar is fixed beneath it.
+        The page content is padded down and right so it never goes underneath them.
+      </p>
+    </section>
 
-    fetch('/components/sidebar.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('sidebar-container').innerHTML = data;
-        const el = document.querySelector('.sidebar .nav a[data-nav="link"]');
-        if (el) el.classList.add('active');
-      });
-  }
-</script>
+    <section class="card">
+      <h2>Scrollable Content</h2>
+      <p>Keep adding cards here to test scroll behavior.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
+      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
+      <p>Repeat this block as much as you want for testing.</p>
+    </section>
 
-<main class="wrap content">
-<section class="hero">
-<div class="pill">🔗 Satoshium Link • Gateway Layer</div>
-<h1 style="margin-top:14px;">The universal gateway to the Satoshium ecosystem.</h1>
-<p style="max-width:900px;">
-Satoshium Link serves as the navigation and routing layer of the Satoshium Universe.
-It exists to provide simple entry points into the broader ecosystem of platforms,
-knowledge systems, experimental environments, infrastructure layers, and community resources.
-</p>
-<p style="max-width:900px;">
-Where other domains represent specific layers of the platform, Satoshium Link functions
-as a connective surface that helps people quickly reach the systems they are looking for.
-</p>
-<div class="statline">
-<span class="stat">🔗 Gateway Layer</span>
-<span class="stat">🧭 Ecosystem Navigation</span>
-<span class="stat">📎 Routing Hub</span>
-<span class="stat">🌐 Universal Entry Point</span>
-</div>
-</section>
+    <section class="card">
+      <h2>More Content</h2>
+      <p>This area should scroll while the topbar and sidebar stay fixed.</p>
+    </section>
 
-<div class="grid-2">
-<div class="span-2" id="domain-layers"></div>
-<script>
-fetch('/components/domain-layers.html')
- .then(r => r.text())
- .then(data => {
-   document.getElementById('domain-layers').innerHTML = data;
- });
-</script>
-
-<div class="card">
-<h2>Why This Domain Exists</h2>
-<p>
-Complex ecosystems benefit from simple entry points.
-Satoshium Link exists to make the growing Satoshium Universe easier to navigate,
-especially as new domains, repositories, and systems continue to emerge.
-</p>
-<div class="note">
-This domain is designed to reduce friction between visitors and the systems they want to explore.
-</div>
-</div>
-
-<div class="card">
-<h2>The Role in the Ecosystem</h2>
-<p>
-Within the broader domain architecture, Satoshium Link acts as a lightweight
-navigation and routing layer connecting the major public surfaces of the project.
-</p>
-<div class="note">
-Think of this site as the gateway that connects all Satoshium domains.
-</div>
-</div>
-</div>
-
-<div class="card">
-<h2>Satoshium Domain Architecture</h2>
-<ul>
-<li><strong>satoshium.ai</strong> — public platform layer</li>
-<li><strong>satoshium.info</strong> — knowledge and documentation layer</li>
-<li><strong>satoshium.xyz</strong> — experimental systems</li>
-<li><strong>satoshium.net</strong> — infrastructure and network layer</li>
-<li><strong>satoshium.store</strong> — economic and merchandise layer</li>
-<li><strong>satoshium.link</strong> — gateway and routing layer</li>
-</ul>
-<div class="note">
-Together these domains form the expanding architecture of the Satoshium Universe.
-</div>
-</div>
-
-<div class="card">
-<h2>Possible Uses for This Domain</h2>
-<div class="grid-3">
-<div>
-<h3>🌐 Ecosystem Directory</h3>
-<p>A simple navigation hub linking all Satoshium domains.</p>
-</div>
-<div>
-<h3>📎 Clean Redirect Paths</h3>
-<p>Short links such as satoshium.link/docs or satoshium.link/labs.</p>
-</div>
-<div>
-<h3>📱 QR Entry Point</h3>
-<p>Public gateway for presentations, stickers, and events.</p>
-</div>
-<div>
-<h3>🧭 Onboarding Hub</h3>
-<p>A simple starting page for newcomers discovering the ecosystem.</p>
-</div>
-<div>
-<h3>🔗 Social Gateway</h3>
-<p>One place to connect Satoshium's media, projects, and platforms.</p>
-</div>
-<div>
-<h3>📚 Public Resources</h3>
-<p>Short paths to important documents, tools, and community resources.</p>
-</div>
-</div>
-</div>
-
-<div class="card">
-<h2>Current Status</h2>
-<p>
-Satoshium Link has been established as a new domain within the growing
-Satoshium ecosystem. Its role will likely evolve as the platform expands
-and additional systems are introduced over time.
-</p>
-</div>
+  </div>
 </main>
 
-<div class="wrap reflection">
-<hr />
-<div id="random-saying" class="muted" style="margin-bottom:14px; max-width:760px;">
-  Satoshium is being built slowly, in public, and with architectural discipline.
-</div>
-<hr />
-</div>
-
-<div id="footer-container"></div>
-<script src="/assets/sayings.js"></script>
 <script>
-fetch('/components/footer.html')
- .then(response => response.text())
- .then(data => {
-   document.getElementById('footer-container').innerHTML = data;
- });
+fetch("/components/topbar.html")
+  .then(r => r.text())
+  .then(data => {
+    document.getElementById("topbar-container").innerHTML = data;
+
+    const topbarActive = document.querySelector('.topbar .nav a[data-nav="home"]');
+    if (topbarActive) topbarActive.classList.add("active");
+  });
+
+fetch("/components/sidebar.html")
+  .then(r => r.text())
+  .then(data => {
+    document.getElementById("sidebar-container").innerHTML = data;
+
+    const sidebarActive = document.querySelector('.sidebar .nav a[data-nav="link"]');
+    if (sidebarActive) sidebarActive.classList.add("active");
+  });
 </script>
+
 </body>
 </html>
