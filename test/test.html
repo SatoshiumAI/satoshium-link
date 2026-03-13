@@ -7,37 +7,7 @@
 
   <!-- shared / local CSS goes here -->
   <style>
-:root{
-  --card-wm: url('/satoshium-progress/assets/world-grid.jpg');
-  --bg:#07090d;
-  --panel:#0c1018;
-  --text:#e8edf7;
-  --muted:#9aa7bd;
-  --gold:#d6a34a;
-  --gold2:#f4c36a;
-  --line:rgba(214,163,74,.18);
-}
 
-    *{box-sizing:border-box}
-
-html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.55
-}
-
-body{
- padding-top:80px;
-}
-  
-a{color:var(--gold2);text-decoration:none}
-a:hover{color:var(--gold)}
-
-.wrap{max-width:980px;margin:0 auto;padding:0 18px}
-    
   body{
     margin:0;
     background:#07090d;
@@ -148,18 +118,54 @@ a:hover{color:var(--gold)}
 
   /* ===== Hero ===== */
   .hero{
-    position:relative;
-    min-height:620px;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-    border:1px solid rgba(214,163,74,.15);
-    border-radius:22px;
-    background:
-      radial-gradient(circle at top right, rgba(214,163,74,.08), transparent 28%),
-      linear-gradient(to bottom right, rgba(7,9,13,.98), rgba(12,16,24,.94));
-  }
+  position:relative;
+  min-height:620px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+  border:1px solid rgba(214,163,74,.15);
+  border-radius:22px;
 
+  background:
+    radial-gradient(circle at top right, rgba(214,163,74,.08), transparent 28%),
+    linear-gradient(to bottom right, rgba(7,9,13,.98), rgba(12,16,24,.94));
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background-image:url('/assets/world-grid.jpg');
+  background-size:cover;
+  background-position:center;
+
+  opacity:.10;
+  filter:
+  sepia(.35)
+  saturate(.8)
+  brightness(.7)
+  contrast(1.1);
+
+  z-index:0;
+}
+
+.hero::before{
+  animation: mapDrift 120s linear infinite;
+}
+
+@keyframes mapDrift{
+  0%{
+    transform:scale(1.05) translateX(0);
+  }
+  50%{
+    transform:scale(1.05) translateX(-2%);
+  }
+  100%{
+    transform:scale(1.05) translateX(0);
+  }
+}
+    
   #hero-network{
     position:absolute;
     inset:0;
@@ -239,12 +245,11 @@ a:hover{color:var(--gold)}
 <body>
 
 <div id="topbar-container"></div>
-<div id="sidebar-container"></div>
 
 <main class="wrap content">
 
     <!-- 1. HERO -->
-    <section class="hero" style="--card-wm:url('/satoshium-progress/assets/world-grid.jpg');">
+    <section class="hero">
   <div id="hero-network"></div>
 
   <div class="hero-content">
@@ -549,6 +554,13 @@ const bounds = {
   z: 6
 };
 
+const hubs = [
+  { name: "New York", x: -6.8, y: 1.6, z: 0.8, color: 0xf4c36a },
+  { name: "London",   x: -0.8, y: 2.4, z: 0.6, color: 0x4cc9f0 },
+  { name: "Tokyo",    x: 7.8,  y: 1.8, z: 0.7, color: 0xf4c36a },
+  { name: "Singapore",x: 5.1,  y: -1.8, z: 0.5, color: 0x4cc9f0 }
+];
+  
 for(let i=0;i<nodeCount;i++){
   const x = (Math.random() - 0.5) * bounds.x * 2;
   const y = (Math.random() - 0.5) * bounds.y * 2;
@@ -573,6 +585,36 @@ for(let i=0;i<nodeCount;i++){
 }
 scene.add(nodeGroup);
 
+const hubGroup = new THREE.Group();
+
+for(const hub of hubs){
+  const hubCoreGeo = new THREE.SphereGeometry(0.14, 18, 18);
+  const hubCoreMat = new THREE.MeshBasicMaterial({
+    color: hub.color,
+    transparent: true,
+    opacity: 0.95
+  });
+  const hubCore = new THREE.Mesh(hubCoreGeo, hubCoreMat);
+  hubCore.position.set(hub.x, hub.y, hub.z);
+
+  const hubGlowGeo = new THREE.SphereGeometry(0.34, 18, 18);
+  const hubGlowMat = new THREE.MeshBasicMaterial({
+    color: hub.color,
+    transparent: true,
+    opacity: 0.14
+  });
+  const hubGlow = new THREE.Mesh(hubGlowGeo, hubGlowMat);
+  hubGlow.position.copy(hubCore.position);
+
+  hubGroup.add(hubGlow);
+  hubGroup.add(hubCore);
+
+  hub.core = hubCore;
+  hub.glow = hubGlow;
+}
+
+scene.add(hubGroup);
+  
 // ----------------------------------
 // CONNECTION LINES
 // ----------------------------------
@@ -625,24 +667,52 @@ for(let i=0;i<signalCount;i++){
   const s = new THREE.Mesh(geo, mat);
   signalGroup.add(s);
 
-  signals.push({
-    mesh: s,
-    a: Math.floor(Math.random() * positions.length),
-    b: Math.floor(Math.random() * positions.length),
-    t: Math.random(),
-    speed: Math.random() * 0.004 + 0.002
-  });
+  const useHubs = i < 8; // first 8 signals use major hubs
+
+  if(useHubs){
+    let a = Math.floor(Math.random() * hubs.length);
+    let b = Math.floor(Math.random() * hubs.length);
+    while(b === a) b = Math.floor(Math.random() * hubs.length);
+
+    signals.push({
+      mesh: s,
+      useHubs: true,
+      a,
+      b,
+      t: Math.random(),
+      speed: Math.random() * 0.003 + 0.0018
+    });
+  } else {
+    signals.push({
+      mesh: s,
+      useHubs: false,
+      a: Math.floor(Math.random() * positions.length),
+      b: Math.floor(Math.random() * positions.length),
+      t: Math.random(),
+      speed: Math.random() * 0.004 + 0.002
+    });
+  }
 }
 scene.add(signalGroup);
-
+  
 function resetSignal(sig){
-  sig.a = Math.floor(Math.random() * positions.length);
-  sig.b = Math.floor(Math.random() * positions.length);
-  while(sig.b === sig.a){
+  if(sig.useHubs){
+    sig.a = Math.floor(Math.random() * hubs.length);
+    sig.b = Math.floor(Math.random() * hubs.length);
+    while(sig.b === sig.a){
+      sig.b = Math.floor(Math.random() * hubs.length);
+    }
+    sig.t = 0;
+    sig.speed = Math.random() * 0.003 + 0.0018;
+  } else {
+    sig.a = Math.floor(Math.random() * positions.length);
     sig.b = Math.floor(Math.random() * positions.length);
+    while(sig.b === sig.a){
+      sig.b = Math.floor(Math.random() * positions.length);
+    }
+    sig.t = 0;
+    sig.speed = Math.random() * 0.004 + 0.002;
   }
-  sig.t = 0;
-  sig.speed = Math.random() * 0.004 + 0.002;
 }
 
 // ----------------------------------
@@ -704,18 +774,25 @@ function animate(){
 
   // animate signals
   for(const sig of signals){
-    const a = positions[sig.a];
-    const b = positions[sig.b];
+  let a, b;
 
-    sig.t += sig.speed;
-    if(sig.t >= 1){
-      resetSignal(sig);
-    }
-
-    sig.mesh.position.lerpVectors(a, b, sig.t);
-    const pulse = 1 + Math.sin(t * 8.0) * 0.25;
-    sig.mesh.scale.setScalar(pulse);
+  if(sig.useHubs){
+    a = hubs[sig.a].core.position;
+    b = hubs[sig.b].core.position;
+  } else {
+    a = positions[sig.a];
+    b = positions[sig.b];
   }
+
+  sig.t += sig.speed;
+  if(sig.t >= 1){
+    resetSignal(sig);
+  }
+
+  sig.mesh.position.lerpVectors(a, b, sig.t);
+  const pulse = 1 + Math.sin(t * 8.0) * 0.25;
+  sig.mesh.scale.setScalar(pulse);
+}
 
   // slow light motion
   goldLight.position.x = 8 + Math.sin(t * 0.5) * 2;
@@ -724,6 +801,27 @@ function animate(){
   cyanLight.position.x = -9 + Math.cos(t * 0.4) * 2;
   cyanLight.position.y = -5 + Math.sin(t * 0.5) * 1.5;
 
+for(const sig of signals){
+  let a, b;
+
+  if(sig.useHubs){
+    a = hubs[sig.a].core.position;
+    b = hubs[sig.b].core.position;
+  } else {
+    a = positions[sig.a];
+    b = positions[sig.b];
+  }
+
+  sig.t += sig.speed;
+  if(sig.t >= 1){
+    resetSignal(sig);
+  }
+
+  sig.mesh.position.lerpVectors(a, b, sig.t);
+  const pulse = 1 + Math.sin(t * 8.0) * 0.25;
+  sig.mesh.scale.setScalar(pulse);
+}
+  
   renderer.render(scene, camera);
 }
 animate();
