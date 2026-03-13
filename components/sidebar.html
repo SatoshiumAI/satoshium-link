@@ -1,0 +1,225 @@
+<!-- sidebar.html | Satoshium Link (Global Sidebar) -->
+<style>
+:root{
+ --card-wm: url('/satoshium-info/assets/seal.png');
+ --bg:#07090d;
+ --panel:#0c1018;
+ --panel2:#0f1520;
+ --text:#e8edf7;
+ --muted:#9aa7bd;
+ --gold:#d6a34a;
+ --gold2:#f4c36a;
+ --line:rgba(214,163,74,.18);
+ --sidebar-w:270px;
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+ background:var(--bg);
+ color:var(--text);
+ font-family:Inter,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+}
+
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--gold)}
+
+.sidebar{
+ position:fixed;
+ top:0;
+ left:0;
+ bottom:0;
+ width:var(--sidebar-w);
+ background:linear-gradient(180deg, rgba(12,16,24,.98), rgba(7,9,13,.96));
+ border-right:1px solid var(--line);
+ backdrop-filter:blur(10px);
+ display:flex;
+ flex-direction:column;
+ z-index:1000;
+ overflow-y:auto;
+}
+
+.sidebar-inner{
+ padding:22px 18px 20px;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ padding-bottom:18px;
+ margin-bottom:18px;
+ border-bottom:1px solid var(--line);
+}
+
+.mark{
+ width:46px;
+ height:46px;
+ border-radius:14px;
+ display:grid;
+ place-items:center;
+ background:linear-gradient(180deg, rgba(214,163,74,.22), rgba(214,163,74,.05));
+ border:1px solid var(--line);
+ color:var(--gold2);
+ font-weight:900;
+ flex:0 0 auto;
+}
+
+.logo-mark{
+ width:30px;
+ height:30px;
+ display:block;
+}
+
+.name{
+ letter-spacing:.16em;
+ font-weight:800;
+ font-size:12px;
+ color:var(--gold2);
+}
+
+.tag{
+ font-size:12px;
+ color:var(--muted);
+ margin-top:2px;
+}
+
+.section-label{
+ font-size:11px;
+ text-transform:uppercase;
+ letter-spacing:.16em;
+ color:var(--muted);
+ margin:2px 0 10px;
+}
+
+.nav{
+ display:flex;
+ flex-direction:column;
+ gap:8px;
+}
+
+.nav a{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:12px;
+ color:var(--muted);
+ font-size:14px;
+ padding:10px 12px;
+ border:1px solid transparent;
+ border-radius:12px;
+ transition:background .18s ease, border-color .18s ease, transform .18s ease, color .18s ease;
+}
+
+.nav a::after{
+ content:"›";
+ color:rgba(244,195,106,.75);
+ font-size:15px;
+}
+
+.nav a:hover{
+ color:var(--gold2);
+ background:rgba(214,163,74,.07);
+ border-color:var(--line);
+ transform:translateX(2px);
+}
+
+.nav a.active{
+ color:var(--gold2);
+ background:rgba(214,163,74,.10);
+ border-color:var(--line);
+ font-weight:600;
+}
+
+.sidebar-footer{
+ margin-top:auto;
+ padding:16px 18px 20px;
+ border-top:1px solid var(--line);
+ color:var(--muted);
+ font-size:12px;
+ line-height:1.5;
+}
+
+.page-demo{
+ margin-left:var(--sidebar-w);
+ min-height:100vh;
+ padding:40px 32px;
+}
+
+.demo-card{
+ max-width:860px;
+ background:linear-gradient(180deg, rgba(15,21,32,.92), rgba(12,16,24,.95));
+ border:1px solid var(--line);
+ border-radius:22px;
+ padding:28px;
+ box-shadow:0 16px 40px rgba(0,0,0,.28);
+}
+
+.demo-card h1{
+ margin:0 0 10px;
+ font-size:28px;
+ color:var(--gold2);
+}
+
+.demo-card p{
+ margin:0;
+ color:var(--muted);
+ line-height:1.7;
+}
+
+@media (max-width: 900px){
+ :root{--sidebar-w:100%}
+ .sidebar{
+  position:relative;
+  width:100%;
+  bottom:auto;
+  border-right:none;
+  border-bottom:1px solid var(--line);
+ }
+ .page-demo{
+  margin-left:0;
+  padding:24px 18px 32px;
+ }
+}
+</style>
+
+<aside class="sidebar" aria-label="Satoshium global sidebar">
+  <div class="sidebar-inner">
+    <div class="brand">
+      <div class="mark">
+        <img src="https://satoshium.link/assets/satoshium-mark.svg" class="logo-mark" alt="Satoshium mark">
+      </div>
+      <div>
+        <div class="name">SATOSHIUM</div>
+        <div class="tag">AI, governed by Bitcoin</div>
+      </div>
+    </div>
+
+    <div class="section-label">Navigation</div>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="https://satoshium.link" data-nav="link">Link</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/" target="_blank" rel="noopener" data-nav="progress">Progress</a>
+      <a href="https://satoshium.dev/" target="_blank" rel="noopener" data-nav="dev">Dev</a>
+      <a href="https://satoshium.xyz" target="_blank" rel="noopener" data-nav="xyz">XYZ</a>
+      <a href="https://satoshium.info" target="_blank" rel="noopener" data-nav="info">Info</a>
+      <a href="https://satoshium.info/workspace/" data-nav="workspace">Workspace</a>
+      <a href="https://satoshium.net" data-nav="net">Net</a>
+      <a href="https://satoshium.store" target="_blank" rel="noopener" data-nav="store">Store</a>
+      <a href="https://satoshium.us/" target="_blank" rel="noopener" data-nav="us">U.S.</a>
+      <a href="https://satoshium.ai" target="_blank" rel="noopener" data-nav="mainsite">Main Site</a>
+    </nav>
+  </div>
+
+  <div class="sidebar-footer">
+    Sidebar version converted from the original fixed top navigation layout.
+  </div>
+</aside>
+
+<main class="page-demo">
+  <section class="demo-card">
+    <h1>Sidebar Preview</h1>
+    <p>
+      This file is ready to use as a standalone sidebar include or starting point. You can remove this preview section if you only want the sidebar component itself.
+    </p>
+  </section>
+</main>
