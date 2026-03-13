@@ -83,6 +83,14 @@
     margin-top:20px;
   }
 
+  .hero-content::before{
+  content:"";
+  position:absolute;
+  inset:-40px;
+  background:radial-gradient(circle, rgba(7,9,13,.85), transparent 70%);
+  z-index:-1;
+}  
+
   .btn{
     display:inline-block;
     padding:10px 14px;
@@ -601,7 +609,7 @@ for(const hub of hubs){
   const hubGlowMat = new THREE.MeshBasicMaterial({
     color: hub.color,
     transparent: true,
-    opacity: 0.14
+    opacity: 0.22
   });
   const hubGlow = new THREE.Mesh(hubGlowGeo, hubGlowMat);
   hubGlow.position.copy(hubCore.position);
@@ -748,9 +756,11 @@ function animate(){
 
   const t = clock.getElapsedTime();
 
-  // subtle scene drift
-  scene.rotation.y = Math.sin(t * 0.10) * 0.08;
-  scene.rotation.x = Math.cos(t * 0.08) * 0.03;
+   // subtle scene drift
+  scene.rotation.y = Math.sin(t * 0.08) * 0.06;
+scene.rotation.x = Math.cos(t * 0.06) * 0.03;
+
+   lineMaterial.opacity = 0.14 + Math.sin(t * 0.8) * 0.04;
 
   // move nodes
   for(let i=0;i<positions.length;i++){
