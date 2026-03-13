@@ -368,6 +368,24 @@ fetch("/components/sidebar.html")
     if (sidebarActive) sidebarActive.classList.add("active");
   });
 </script>
+<div class="wrap reflection">
+<hr />
+<div id="random-saying" class="muted" style="margin-bottom:14px; max-width:760px;">
+  Satoshium is being built slowly, in public, and with architectural discipline.
+</div>
+<hr />
 
+<div id="footer-container"></div>
+
+<script src="/assets/sayings.js"></script>
+<script>
+fetch("/components/footer.html")
+ .then(response => response.text())
+ .then(data => {
+ document.getElementById("footer-container").innerHTML = data;
+ });
+</script>
+</body>
+</html>
 </body>
 </html>
