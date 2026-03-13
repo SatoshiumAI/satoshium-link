@@ -91,6 +91,17 @@ h3{font-size:15px;color:var(--text)}
  .grid-2{grid-template-columns:1fr}
  h1{font-size:30px}
 }
+
+function setActive(key){
+      const el = document.querySelector(`.topbar .nav a[data-nav="${key}"]`);
+      if (el) el.classList.add("active");
+    }
+
+    setActive("Dev");
+  });
+</script>
+
+ 
 </style>
 </head>
 
