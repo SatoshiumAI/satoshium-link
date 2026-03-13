@@ -1,0 +1,150 @@
+<!-- topbar-ai.html | Satoshium AI (Platform Topbar) -->
+<style>
+:root{
+ --bg:#07090d;
+ --panel:#0c1018;
+ --text:#e8edf7;
+ --muted:#9aa7bd;
+ --gold:#d6a34a;
+ --gold2:#f4c36a;
+ --line:rgba(214,163,74,.18);
+}
+
+*{box-sizing:border-box}
+
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--gold)}
+
+.wrap{
+ max-width:1180px;
+ margin:0 auto;
+ padding:0 18px;
+}
+
+/* ===== Fixed Top Navigation ===== */
+.topbar{
+ position:fixed;
+ top:0;
+ left:0;
+ width:100%;
+ z-index:1000;
+ background:rgba(7,9,13,.92);
+ border-bottom:1px solid var(--line);
+ backdrop-filter: blur(8px);
+}
+
+.topbar .wrap{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ gap:18px;
+ padding:14px 0;
+}
+
+.brand{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ flex-shrink:0;
+}
+
+.mark{
+ width:42px;
+ height:42px;
+ border-radius:14px;
+ display:grid;
+ place-items:center;
+ background:linear-gradient(180deg, rgba(214,163,74,.22), rgba(214,163,74,.05));
+ border:1px solid var(--line);
+ color:var(--gold2);
+ font-weight:900;
+}
+
+.logo-mark{
+ width:28px;
+ height:28px;
+ display:block;
+}
+
+.brandtext{
+ display:flex;
+ flex-direction:column;
+}
+
+.name{
+ letter-spacing:.16em;
+ font-weight:800;
+ font-size:12px;
+ color:var(--gold2);
+}
+
+.tag{
+ font-size:12px;
+ color:var(--muted);
+ margin-top:2px;
+}
+
+.nav{
+ display:flex;
+ gap:16px;
+ align-items:center;
+ justify-content:flex-end;
+ flex-wrap:wrap;
+}
+
+.nav a{
+ color:var(--muted);
+ font-size:13px;
+ white-space:nowrap;
+}
+
+.nav a:hover{
+ color:var(--gold2);
+}
+
+.nav a.active{
+ color:var(--gold2);
+ font-weight:600;
+}
+
+@media (max-width: 1080px){
+ .topbar .wrap{
+  align-items:flex-start;
+  flex-direction:column;
+ }
+ .nav{
+  justify-content:flex-start;
+ }
+}
+</style>
+
+<header class="topbar" aria-label="Satoshium AI platform topbar">
+  <div class="wrap">
+
+    <div class="brand">
+      <div class="mark">
+        <img src="https://satoshium.link/assets/satoshium-mark.svg" class="logo-mark" alt="Satoshium mark">
+      </div>
+      <div class="brandtext">
+        <div class="name">SATOSHIUM</div>
+        <div class="tag">AI, governed by Bitcoin</div>
+      </div>
+    </div>
+
+    <nav class="nav" aria-label="Platform navigation">
+      <a href="https://satoshium.ai/" data-nav="home">Home</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/start-here/" data-nav="start">Start Here</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/architecture/" data-nav="architecture">Architecture</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/systems/">Systems</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/services/">Services</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/education/" data-nav="education">Education</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/labs/" data-nav="labs">Labs</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/build/" data-nav="build">Build</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/updates/" data-nav="updates">Updates</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/repo-map/" data-nav="repomap">Repo Map</a>
+      <a href="https://satoshiumai.github.io/satoshium-progress/registry/" data-nav="registry">Registry</a>
+      <a href="https://satoshium.link/" data-nav="universe">Universe</a>
+    </nav>
+
+  </div>
+</header>
