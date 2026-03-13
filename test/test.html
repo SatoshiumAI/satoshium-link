@@ -148,7 +148,7 @@
   background-size:cover;
   background-position:center;
 
-  opacity:.10;
+  opacity:.08;
   filter:
   sepia(.35)
   saturate(.8)
@@ -563,10 +563,12 @@ const bounds = {
 };
 
 const hubs = [
-  { name: "New York", x: -6.8, y: 1.6, z: 0.8, color: 0xf4c36a },
-  { name: "London",   x: -0.8, y: 2.4, z: 0.6, color: 0x4cc9f0 },
-  { name: "Tokyo",    x: 7.8,  y: 1.8, z: 0.7, color: 0xf4c36a },
-  { name: "Singapore",x: 5.1,  y: -1.8, z: 0.5, color: 0x4cc9f0 }
+  { name: "Atlantic",   x: -8.8, y:  1.4, z: 0.7, color: 0xf4c36a },
+  { name: "Europe",     x:  0.6, y:  3.1, z: 0.6, color: 0x4cc9f0 },
+  { name: "East Asia",  x:  8.3, y:  2.0, z: 0.7, color: 0xf4c36a },
+  { name: "Singapore",  x:  5.9, y: -0.9, z: 0.5, color: 0x4cc9f0 },
+  { name: "Pacific",    x: 10.8, y:  1.2, z: 0.6, color: 0xf4c36a },
+  { name: "Oceania",    x:  7.4, y: -3.6, z: 0.5, color: 0x4cc9f0 }
 ];
   
 for(let i=0;i<nodeCount;i++){
@@ -596,21 +598,23 @@ scene.add(nodeGroup);
 const hubGroup = new THREE.Group();
 
 for(const hub of hubs){
-  const hubCoreGeo = new THREE.SphereGeometry(0.14, 18, 18);
-  const hubCoreMat = new THREE.MeshBasicMaterial({
-    color: hub.color,
-    transparent: true,
-    opacity: 0.95
-  });
+  const hubCoreGeo = new THREE.SphereGeometry(0.15, 18, 18);
+const hubCoreMat = new THREE.MeshBasicMaterial({
+  color: hub.color,
+  transparent: true,
+  opacity: 0.98
+});
+
+const hubGlowGeo = new THREE.SphereGeometry(0.42, 18, 18);
+const hubGlowMat = new THREE.MeshBasicMaterial({
+  color: hub.color,
+  transparent: true,
+  opacity: 0.20
+});
+
   const hubCore = new THREE.Mesh(hubCoreGeo, hubCoreMat);
   hubCore.position.set(hub.x, hub.y, hub.z);
-
-  const hubGlowGeo = new THREE.SphereGeometry(0.34, 18, 18);
-  const hubGlowMat = new THREE.MeshBasicMaterial({
-    color: hub.color,
-    transparent: true,
-    opacity: 0.22
-  });
+  
   const hubGlow = new THREE.Mesh(hubGlowGeo, hubGlowMat);
   hubGlow.position.copy(hubCore.position);
 
@@ -622,6 +626,20 @@ for(const hub of hubs){
 }
 
 scene.add(hubGroup);
+
+  let x, y, z;
+let attempts = 0;
+
+do{
+  x = (Math.random() - 0.5) * bounds.x * 2;
+  y = (Math.random() - 0.5) * bounds.y * 2;
+  z = (Math.random() - 0.5) * bounds.z * 2;
+  attempts++;
+} while (
+  x > -10 && x < 1.5 &&
+  y > -1.5 && y < 4.5 &&
+  attempts < 30
+);
   
 // ----------------------------------
 // CONNECTION LINES
@@ -723,6 +741,49 @@ function resetSignal(sig){
   }
 }
 
+// ----------------------------------
+// BLOCK PULSES (tiny packets moving across random network lines)
+// ----------------------------------
+const blockPulseCount = 12;
+const blockPulseGroup = new THREE.Group();
+const blockPulses = [];
+
+for(let i = 0; i < blockPulseCount; i++){
+  const geo = new THREE.BoxGeometry(0.08, 0.08, 0.08);
+  const mat = new THREE.MeshBasicMaterial({
+    color: i % 2 === 0 ? 0xf4c36a : 0x4cc9f0,
+    transparent: true,
+    opacity: 0.92
+  });
+
+  const block = new THREE.Mesh(geo, mat);
+  blockPulseGroup.add(block);
+
+  let a = Math.floor(Math.random() * positions.length);
+  let b = Math.floor(Math.random() * positions.length);
+  while(b === a) b = Math.floor(Math.random() * positions.length);
+
+  blockPulses.push({
+    mesh: block,
+    a,
+    b,
+    t: Math.random(),
+    speed: Math.random() * 0.003 + 0.0015
+  });
+}
+
+scene.add(blockPulseGroup);
+
+function resetBlockPulse(p){
+  p.a = Math.floor(Math.random() * positions.length);
+  p.b = Math.floor(Math.random() * positions.length);
+  while(p.b === p.a){
+    p.b = Math.floor(Math.random() * positions.length);
+  }
+  p.t = 0;
+  p.speed = Math.random() * 0.003 + 0.0015;
+}
+  
 // ----------------------------------
 // GRID / DEPTH PARTICLES
 // ----------------------------------
@@ -831,10 +892,26 @@ for(const sig of signals){
   const pulse = 1 + Math.sin(t * 8.0) * 0.25;
   sig.mesh.scale.setScalar(pulse);
 }
+
+// animate block pulses
+for(const p of blockPulses){
+  const a = positions[p.a];
+  const b = positions[p.b];
+
+  p.t += p.speed;
+  if(p.t >= 1){
+    resetBlockPulse(p);
+  }
+
+  p.mesh.position.lerpVectors(a, b, p.t);
+
+  const pulse = 0.9 + Math.sin(t * 7 + p.a) * 0.15;
+  p.mesh.scale.setScalar(pulse);
+}
   
   renderer.render(scene, camera);
 }
-animate();
+animate(lineMaterial.opacity = 0.14 + Math.sin(t * 0.8) * 0.03;);
 
 // ----------------------------------
 // RESIZE
