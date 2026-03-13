@@ -1,132 +1,354 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Satoshium — Dual Nav Test</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Satoshium — AI governed by Bitcoin</title>
 
-<style>
-:root{
-  --bg:#07090d;
-  --panel:#0c1018;
-  --text:#e8edf7;
-  --muted:#9aa7bd;
-  --gold:#d6a34a;
-  --gold2:#f4c36a;
-  --line:rgba(214,163,74,.18);
+  <!-- shared / local CSS goes here -->
+  <style>
+    body{
+      margin:0;
+      background:#07090d;
+      color:#e8edf7;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.55;
+      padding-top:80px;
+    }
 
-  --topbar-h:68px;
-  --sidebar-w:220px;
-}
+    .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:0 18px;
+    }
 
-*{box-sizing:border-box}
+    .content{
+      padding:34px 18px 60px;
+    }
 
-html,body{
-  margin:0;
-  padding:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.55;
-}
+    .section{
+      margin:22px 0;
+      padding:24px;
+      border:1px solid rgba(214,163,74,.15);
+      border-radius:18px;
+      background:linear-gradient(to bottom right,rgba(12,16,24,.96),rgba(12,16,24,.90));
+    }
 
-a{color:var(--gold2);text-decoration:none}
-a:hover{color:var(--gold)}
+    .hero{
+      min-height:560px;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+    }
 
-.page-shell{
-  padding-top:var(--topbar-h);
-  padding-left:var(--sidebar-w);
-  min-height:100vh;
-}
+    .hero-overlay{
+      position:relative;
+      z-index:2;
+      max-width:760px;
+    }
 
-.page-content{
-  padding:32px 24px 60px;
-  max-width:1100px;
-}
+    .grid-2{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:16px;
+    }
 
-.hero,
-.card{
-  border:1px solid var(--line);
-  border-radius:20px;
-  background:linear-gradient(to bottom right, rgba(12,16,24,.96), rgba(12,16,24,.90));
-  box-shadow:0 0 0 1px rgba(214,163,74,.08), 0 20px 50px rgba(0,0,0,.45);
-}
+    .grid-3{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
 
-.hero{
-  padding:28px 22px;
-  margin-bottom:20px;
-}
+    .card{
+      padding:18px;
+      border:1px solid rgba(214,163,74,.15);
+      border-radius:16px;
+      background:rgba(12,16,24,.88);
+    }
 
-.card{
-  padding:18px;
-  margin:16px 0;
-}
+    .span-2{
+      grid-column:1 / -1;
+    }
 
-h1{
-  margin:0 0 12px;
-  color:var(--gold2);
-  font-size:34px;
-}
+    .muted{
+      color:#9aa7bd;
+    }
 
-h2{
-  color:var(--gold2);
-  margin:0 0 10px;
-}
+    .pill{
+      display:inline-block;
+      padding:8px 12px;
+      border:1px solid rgba(214,163,74,.18);
+      border-radius:999px;
+      color:#f4c36a;
+      background:rgba(214,163,74,.06);
+      font-size:12px;
+      font-weight:700;
+      margin-bottom:12px;
+    }
 
-p{
-  margin:0 0 14px;
-}
+    .hero-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:20px;
+    }
 
-@media (max-width:980px){
-  .page-shell{
-    padding-left:0;
-  }
-}
-</style>
+    .btn{
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid rgba(214,163,74,.18);
+      color:#f4c36a;
+      text-decoration:none;
+      background:rgba(214,163,74,.06);
+    }
+
+    .note{
+      margin-top:12px;
+      padding:12px 14px;
+      border:1px solid rgba(214,163,74,.18);
+      border-radius:12px;
+      background:rgba(214,163,74,.05);
+      color:#9aa7bd;
+      font-size:14px;
+    }
+
+    @media (max-width:900px){
+      .grid-3{grid-template-columns:1fr;}
+    }
+
+    @media (max-width:760px){
+      .grid-2{grid-template-columns:1fr;}
+      .span-2{grid-column:auto;}
+      .hero{min-height:auto;}
+    }
+  </style>
 </head>
+
 <body>
 
 <div id="topbar-container"></div>
 <div id="sidebar-container"></div>
 
-<main class="page-shell">
-  <div class="page-content">
+<main class="wrap content">
 
-    <section class="hero">
-      <h1>Satoshium Link Test Page</h1>
-      <p>
-        This page is testing a fixed topbar + fixed left sidebar layout.
-        The content scrolls while both navigation layers remain in place.
+    <!-- 1. HERO -->
+    <section class="section hero">
+      <!-- optional animated background canvas/video/div goes behind this -->
+
+      <div class="hero-overlay">
+        <div class="pill">🪐 Satoshium Universe • Main Platform</div>
+
+        <h1>AI, governed by Bitcoin.</h1>
+
+        <p class="muted" style="max-width:720px;">
+          Satoshium explores how trusted systems, shared knowledge, and intelligent coordination
+          can evolve together through cryptographic rules, transparent architecture, and long-horizon design.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn" href="/start/">Enter the Platform</a>
+          <a class="btn" href="/architecture/">Explore Architecture</a>
+          <a class="btn" href="/build/">View the Build</a>
+        </div>
+
+        <div class="note">
+          Built in public. Calm. Long-term. Real.
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. WHAT IS SATOSHIUM -->
+    <section class="section">
+      <h2>What Is Satoshium?</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>🧠 Decentralized Intelligence Infrastructure</h3>
+          <p class="muted">
+            Satoshium is a long-horizon platform exploring how intelligence systems can operate
+            within trusted rules, shared knowledge, and transparent verification frameworks.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🔐 Bitcoin as the Trust Model</h3>
+          <p class="muted">
+            Bitcoin introduced a system where truth can be verified without relying on authority.
+            Satoshium extends that trust logic into intelligent and coordinated systems.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. WHY NOW -->
+    <section class="section">
+      <h2>Why Now?</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>⚡ AI is accelerating</h3>
+          <p class="muted">
+            Intelligent systems are becoming more capable and more influential.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🌫 Trust is eroding</h3>
+          <p class="muted">
+            Opaque systems and centralized intermediaries create growing uncertainty.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🧭 A new model is needed</h3>
+          <p class="muted">
+            Satoshium explores how trusted infrastructure, shared knowledge, and intelligent reasoning
+            can evolve together.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. CORE PLATFORM LAYERS -->
+    <section class="section">
+      <h2>Core Platform Layers</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>🔐 Trust Layer</h3>
+          <p class="muted">
+            Verification, governance, safety, and cryptographic trust foundations.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>📚 Knowledge Layer</h3>
+          <p class="muted">
+            Definitions, documentation, specifications, and canonical structure.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🧠 Intelligence Layer</h3>
+          <p class="muted">
+            Reasoning systems, tools, signals, and structured intelligence workflows.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🧪 Simulation / Interface Layer</h3>
+          <p class="muted">
+            Experiments, demos, interfaces, and safe environments for testing ideas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. EXPLORE THE PLATFORM -->
+    <section class="section">
+      <h2>Explore the Platform</h2>
+      <div class="grid-3">
+        <div class="card">
+          <h3>🚀 Start Here</h3>
+          <p class="muted">Begin with the simplest introduction to Satoshium.</p>
+          <p><a href="/start/">Open Start Here →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>🏗 Architecture</h3>
+          <p class="muted">Understand the layered structure of the platform.</p>
+          <p><a href="/architecture/">View Architecture →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>⚙ Systems</h3>
+          <p class="muted">Explore the core systems powering the ecosystem.</p>
+          <p><a href="/systems/">Explore Systems →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>🧪 Labs</h3>
+          <p class="muted">See experimental tools, simulations, and frontier concepts.</p>
+          <p><a href="/labs/">Open Labs →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>🛠 Build</h3>
+          <p class="muted">Follow the build process and development direction.</p>
+          <p><a href="/build/">View Build →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>🗺 Repo Map</h3>
+          <p class="muted">Explore how the multi-repo ecosystem fits together.</p>
+          <p><a href="/repo-map/">View Repo Map →</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. DOMAIN LAYERS -->
+    <section class="section">
+      <h2>The Satoshium Universe</h2>
+      <p class="muted">
+        Satoshium is expanding into a layered public ecosystem where each domain serves a distinct role.
       </p>
+
+      <div id="domain-layers"></div>
+
+      <script>
+        fetch("https://satoshium.link/components/domain-layers.html")
+          .then(r => r.text())
+          .then(data => {
+            document.getElementById("domain-layers").innerHTML = data;
+          });
+      </script>
     </section>
 
-    <section class="card">
-      <h2>Why this works</h2>
-      <p>
-        The topbar is fixed across the top. The sidebar is fixed beneath it.
-        The page content is padded down and right so it never goes underneath them.
-      </p>
+    <!-- 7. CURRENT PUBLIC BUILD -->
+    <section class="section">
+      <h2>Current Public Build</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>📊 Visible Progress</h3>
+          <p class="muted">
+            Satoshium is being built in public through architecture pages, build logs,
+            repo mapping, and evolving documentation.
+          </p>
+          <p><a href="/updates/">See Updates →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>🧭 Build Philosophy</h3>
+          <p class="muted">
+            No hype. No vapor. Just visible progress and long-horizon system building.
+          </p>
+          <p><a href="/build/">Open Build →</a></p>
+        </div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>Scrollable Content</h2>
-      <p>Keep adding cards here to test scroll behavior.</p>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-      <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.</p>
-      <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-      <p>Repeat this block as much as you want for testing.</p>
+    <!-- 8. JOIN / FOLLOW -->
+    <section class="section">
+      <h2>Follow the Build</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>🐙 GitHub</h3>
+          <p class="muted">
+            Explore the repositories, architecture, and public build process.
+          </p>
+          <p><a href="https://github.com/SatoshiumAI" target="_blank" rel="noopener">Open GitHub →</a></p>
+        </div>
+
+        <div class="card">
+          <h3>📬 Stay Connected</h3>
+          <p class="muted">
+            Follow the project as the platform architecture, domains, and experiments continue to mature.
+          </p>
+          <p><a href="mailto:contact@satoshium.ai">contact@satoshium.ai</a></p>
+        </div>
+      </div>
     </section>
 
-    <section class="card">
-      <h2>More Content</h2>
-      <p>This area should scroll while the topbar and sidebar stay fixed.</p>
-    </section>
-
-  </div>
-</main>
-
+  </main>
 <script>
 fetch("/components/topbar.html")
   .then(r => r.text())
