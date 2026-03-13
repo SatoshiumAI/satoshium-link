@@ -15,6 +15,7 @@
  --gold:#d6a34a;
  --gold2:#f4c36a;
  --line:rgba(214,163,74,.18);
+ --sidebar-w:270px;
 }
 *{box-sizing:border-box}
 html,body{
@@ -23,15 +24,19 @@ html,body{
   background:var(--bg);
   color:var(--text);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  line-height:1.55
+  line-height:1.55;
 }
-body{
- padding-top:80px;
+body.has-topbar{
+  padding-top:80px;
+}
+body.has-sidebar{
+  padding-top:0;
+  padding-left:var(--sidebar-w);
 }
 .reflection{
- margin-top:40px;
- margin-bottom:40px;
- color:var(--muted);
+  margin-top:40px;
+  margin-bottom:40px;
+  color:var(--muted);
 }
 a{color:var(--gold2);text-decoration:none}
 a:hover{color:var(--gold)}
@@ -75,7 +80,7 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
   position:relative;
   overflow:hidden;
   background:linear-gradient(to bottom right,rgba(12,16,24,.94),rgba(12,16,24,.88));
-  border:1px solid var(--line);
+  border:1px solid rgba(214,163,74,.15);
   border-radius:16px;
   padding:16px 16px;
   margin:16px 0;
@@ -100,9 +105,6 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
   transform:translateY(-3px);
   box-shadow:0 10px 25px rgba(0,0,0,.35);
 }
-.card{
-  border:1px solid rgba(214,163,74,.15);
-}
 
 .muted{color:var(--muted)}
 .pill{
@@ -116,36 +118,6 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
   color:var(--gold2);
   font-size:12px;
   font-weight:700
-}
-.pill-link{
-  display:inline-flex;
-  margin-right:8px;
-  margin-bottom:10px
-}
-.hero-actions{
-  display:flex;
-  flex-wrap:wrap;
-  gap:10px;
-  margin-top:18px
-}
-.grid-2{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:16px
-}
-.grid-3{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:16px
-}
-.note{
-  margin-top:10px;
-  padding:12px 14px;
-  border:1px solid var(--line);
-  border-radius:12px;
-  background:rgba(214,163,74,.05);
-  color:var(--muted);
-  font-size:14px;
 }
 .statline{
   display:flex;
@@ -164,12 +136,34 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
   color:var(--text);
   font-size:12px;
 }
- .span-2{
-  grid-column: 1 / -1;
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px
 }
-
-.mini{font-size:13px}
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px
+}
+.span-2{
+  grid-column:1 / -1;
+}
+.note{
+  margin-top:10px;
+  padding:12px 14px;
+  border:1px solid var(--line);
+  border-radius:12px;
+  background:rgba(214,163,74,.05);
+  color:var(--muted);
+  font-size:14px;
+}
 ul{margin:8px 0 0 18px}
+
+/* Hide standalone preview content that exists inside sidebar.html */
+#sidebar-container .page-demo{
+  display:none !important;
+}
 
 @media (max-width:900px){
   .grid-3{grid-template-columns:1fr}
@@ -178,118 +172,101 @@ ul{margin:8px 0 0 18px}
   .grid-2{grid-template-columns:1fr}
   h1{font-size:30px}
 }
+@media (max-width:900px){
+  body.has-sidebar{
+    padding-left:0;
+  }
+}
 </style>
 </head>
-<body id="top">
+<body id="top" class="has-topbar">
 <div id="topbar-container"></div>
+<div id="sidebar-container"></div>
+
 <script>
-fetch("/components/topbar.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("topbar-container").innerHTML = data;
+  const layoutMode = 'topbar'; // change to 'sidebar' to test the sidebar instead
 
-    const path = window.location.pathname.toLowerCase();
+  if (layoutMode === 'topbar') {
+    fetch('/components/topbar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('topbar-container').innerHTML = data;
+        const el = document.querySelector('.topbar .nav a[data-nav="link"]');
+        if (el) el.classList.add('active');
+      });
+  }
 
-    function setActive(key){
-      const el = document.querySelector(`.topbar .nav a[data-nav="${key}"]`);
-      if (el) el.classList.add("active");
-    }
+  if (layoutMode === 'sidebar') {
+    document.body.classList.remove('has-topbar');
+    document.body.classList.add('has-sidebar');
 
-    setActive("link");
-  });
-
-  <div id="sidebar-container"></div>
-<script>
-fetch("/components/sidebar.html")
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById("topbar-container").innerHTML = data;
-
-    const path = window.location.pathname.toLowerCase();
-
-    function setActive(key){
-      const el = document.querySelector(`.topbar .nav a[data-nav="${key}"]`);
-      if (el) el.classList.add("active");
-    }
-
-    setActive("home");
-  });
+    fetch('/components/sidebar.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('sidebar-container').innerHTML = data;
+        const el = document.querySelector('.sidebar .nav a[data-nav="link"]');
+        if (el) el.classList.add('active');
+      });
+  }
 </script>
 
 <main class="wrap content">
-
 <section class="hero">
-
 <div class="pill">🔗 Satoshium Link • Gateway Layer</div>
-
 <h1 style="margin-top:14px;">The universal gateway to the Satoshium ecosystem.</h1>
-
 <p style="max-width:900px;">
 Satoshium Link serves as the navigation and routing layer of the Satoshium Universe.
 It exists to provide simple entry points into the broader ecosystem of platforms,
 knowledge systems, experimental environments, infrastructure layers, and community resources.
 </p>
-
 <p style="max-width:900px;">
 Where other domains represent specific layers of the platform, Satoshium Link functions
 as a connective surface that helps people quickly reach the systems they are looking for.
 </p>
-
 <div class="statline">
 <span class="stat">🔗 Gateway Layer</span>
 <span class="stat">🧭 Ecosystem Navigation</span>
 <span class="stat">📎 Routing Hub</span>
 <span class="stat">🌐 Universal Entry Point</span>
 </div>
-
 </section>
 
 <div class="grid-2">
- <div class="span-2" id="domain-layers"></div>
-
+<div class="span-2" id="domain-layers"></div>
 <script>
-fetch("/components/domain-layers.html")
+fetch('/components/domain-layers.html')
  .then(r => r.text())
  .then(data => {
- document.getElementById("domain-layers").innerHTML = data;
+   document.getElementById('domain-layers').innerHTML = data;
  });
 </script>
- 
+
 <div class="card">
 <h2>Why This Domain Exists</h2>
-
 <p>
 Complex ecosystems benefit from simple entry points.
 Satoshium Link exists to make the growing Satoshium Universe easier to navigate,
 especially as new domains, repositories, and systems continue to emerge.
 </p>
-
 <div class="note">
 This domain is designed to reduce friction between visitors and the systems they want to explore.
 </div>
-
 </div>
 
 <div class="card">
 <h2>The Role in the Ecosystem</h2>
-
 <p>
 Within the broader domain architecture, Satoshium Link acts as a lightweight
 navigation and routing layer connecting the major public surfaces of the project.
 </p>
-
 <div class="note">
 Think of this site as the gateway that connects all Satoshium domains.
 </div>
-
 </div>
-
 </div>
 
 <div class="card">
-
 <h2>Satoshium Domain Architecture</h2>
-
 <ul>
 <li><strong>satoshium.ai</strong> — public platform layer</li>
 <li><strong>satoshium.info</strong> — knowledge and documentation layer</li>
@@ -298,80 +275,66 @@ Think of this site as the gateway that connects all Satoshium domains.
 <li><strong>satoshium.store</strong> — economic and merchandise layer</li>
 <li><strong>satoshium.link</strong> — gateway and routing layer</li>
 </ul>
-
 <div class="note">
 Together these domains form the expanding architecture of the Satoshium Universe.
 </div>
-
 </div>
 
 <div class="card">
-
 <h2>Possible Uses for This Domain</h2>
-
 <div class="grid-3">
-
 <div>
 <h3>🌐 Ecosystem Directory</h3>
 <p>A simple navigation hub linking all Satoshium domains.</p>
 </div>
-
 <div>
 <h3>📎 Clean Redirect Paths</h3>
 <p>Short links such as satoshium.link/docs or satoshium.link/labs.</p>
 </div>
-
 <div>
 <h3>📱 QR Entry Point</h3>
 <p>Public gateway for presentations, stickers, and events.</p>
 </div>
-
 <div>
 <h3>🧭 Onboarding Hub</h3>
 <p>A simple starting page for newcomers discovering the ecosystem.</p>
 </div>
-
 <div>
 <h3>🔗 Social Gateway</h3>
 <p>One place to connect Satoshium's media, projects, and platforms.</p>
 </div>
-
 <div>
 <h3>📚 Public Resources</h3>
 <p>Short paths to important documents, tools, and community resources.</p>
 </div>
-
 </div>
-
 </div>
 
 <div class="card">
-
 <h2>Current Status</h2>
-
 <p>
 Satoshium Link has been established as a new domain within the growing
 Satoshium ecosystem. Its role will likely evolve as the platform expands
 and additional systems are introduced over time.
 </p>
-
 </div>
-</main>                     
+</main>
+
 <div class="wrap reflection">
 <hr />
 <div id="random-saying" class="muted" style="margin-bottom:14px; max-width:760px;">
   Satoshium is being built slowly, in public, and with architectural discipline.
 </div>
 <hr />
+</div>
 
 <div id="footer-container"></div>
-
 <script src="/assets/sayings.js"></script>
 <script>
-fetch("/components/footer.html")
+fetch('/components/footer.html')
  .then(response => response.text())
  .then(data => {
- document.getElementById("footer-container").innerHTML = data;
+   document.getElementById('footer-container').innerHTML = data;
  });
 </script>
 </body>
