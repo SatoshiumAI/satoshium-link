@@ -595,8 +595,8 @@ for (let i = 0; i < nodeCount; i++) {
 
   positions.push(new THREE.Vector3(x, y, z));
   velocities.push(new THREE.Vector3(
-    (Math.random() - 0.5) * 0.012,
-    (Math.random() - 0.5) * 0.012,
+    (Math.random() - 0.5) * 0.009,
+    (Math.random() - 0.5) * 0.009,
     (Math.random() - 0.5) * 0.006
   ));
 
@@ -630,7 +630,7 @@ for (const hub of hubs) {
   const hubGlowMat = new THREE.MeshBasicMaterial({
     color: hub.color,
     transparent: true,
-    opacity: 0.20
+    opacity: 0.155
   });
 
   const hubCore = new THREE.Mesh(hubCoreGeo, hubCoreMat);
