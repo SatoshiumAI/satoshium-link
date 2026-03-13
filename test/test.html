@@ -148,7 +148,7 @@
   background-size:cover;
   background-position:center;
 
-  opacity:.08;
+  opacity:.05;
   filter:
   sepia(.35)
   saturate(.8)
@@ -157,7 +157,11 @@
 
   z-index:0;
 }
-
+.hero h1{
+ text-shadow:
+ 0 0 18px rgba(214,163,74,.25),
+ 0 0 40px rgba(214,163,74,.12);
+}    
 .hero::before{
   animation: mapDrift 120s linear infinite;
 }
@@ -551,7 +555,7 @@ scene.add(cyanLight);
 // ----------------------------------
 // NODE FIELD
 // ----------------------------------
-const nodeCount = 72;
+const nodeCount = 56;
 const positions = [];
 const velocities = [];
 const nodeGroup = new THREE.Group();
@@ -622,7 +626,7 @@ for (const hub of hubs) {
     opacity: 0.98
   });
 
-  const hubGlowGeo = new THREE.SphereGeometry(0.42, 18, 18);
+  const hubGlowGeo = new THREE.SphereGeometry(0.65, 18, 18);
   const hubGlowMat = new THREE.MeshBasicMaterial({
     color: hub.color,
     transparent: true,
