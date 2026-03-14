@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Satoshium • Repo Map</title>
+
+<style>
+:root{
+ --card-wm: url('/assets/seal.png');
+ --bg:#07090d;
+ --panel:#0c1018;
+ --text:#e8edf7;
+ --muted:#9aa7bd;
+ --gold:#d6a34a;
+ --gold2:#f4c36a;
+ --line:rgba(214,163,74,.18);
+}
+*{box-sizing:border-box}
+html,body{
+  margin:0;padding:0;background:var(--bg);color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55
+}
+ body{
+ padding-top:80px;
+}
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--gold)}
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+.content{padding:34px 18px 60px}
+h1,h2,h3{margin:0 0 10px}
+h1{font-size:30px;color:var(--gold2)}
+h2{font-size:20px;color:var(--gold2);margin-top:0}
+h3{font-size:14px;color:var(--gold2);margin-top:0}
+p,li{color:var(--text)}
+hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+
+.card{
+  position:relative;overflow:hidden;
+  background:linear-gradient(to bottom right, rgba(12,16,24,.94), rgba(12,16,24,.88));
+  border:1px solid var(--line);border-radius:16px;padding:16px;margin:16px 0;
+  box-shadow:0 0 0 1px rgba(214,163,74,.08),0 20px 50px rgba(0,0,0,.45);
+}
+.card::before{
+  content:"";position:absolute;inset:-60px;background-image:var(--card-wm);
+  background-repeat:no-repeat;background-size:min(720px,70vw);
+  background-position:right -140px center;opacity:0.028;filter:blur(1px);
+  pointer-events:none;z-index:0;
+}
+.card > *{position:relative;z-index:1}
+ .card {
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.35);
+}
+
+.card {
+ border: 1px solid rgba(214,163,74,.15);
+}
+
+.muted{color:var(--muted)}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);
+  border-radius:999px;background:rgba(214,163,74,.08);color:var(--gold2);font-size:12px;font-weight:700
+}
+.status-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pill.ok{background:rgba(96,196,132,.10);border-color:rgba(96,196,132,.25);color:#bdf5d0}
+.pill.dev{background:rgba(120,165,255,.10);border-color:rgba(120,165,255,.22);color:#cfe0ff}
+.pill.warn{background:rgba(244,195,106,.10);border-color:rgba(244,195,106,.25);color:var(--gold2)}
+.pill.gray{background:rgba(154,167,189,.08);border-color:rgba(154,167,189,.20);color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+ul{margin:8px 0 0 18px}
+@media (max-width:820px){.grid-2{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body id="top">
+
+<div id="topbar-slot"></div>
+<script src="/components/topbar-loader.js"></script>
+
+
+<main class="wrap content">
+  <div class="pill">🧭 Repository Map</div>
+  <h1 style="margin-top:12px;">Satoshium Repo Map</h1>
+  <p class="muted">
+    This page groups the major Satoshium repositories by architectural role. It is not a complete inventory of every repository
+    in the workspace. It is a public map of the repositories that most directly shape the platform's knowledge layer, trust layer,
+    interfaces, simulations, and documentation surface.
+  </p>
+
+  <div class="card">
+    <h2>🧱 How to Read the Repo Map</h2>
+    <p class="muted">
+      The repo map mirrors the broader platform structure. Some repositories define stable foundations. Some support reasoning
+      and intelligence workflows. Others are experimental, internal, or public-facing. Together they form the working repository
+      ecosystem behind Satoshium.
+    </p>
+    <div class="status-row">
+      <span class="pill ok">Foundational repos</span>
+      <span class="pill dev">Active build repos</span>
+      <span class="pill warn">Experimental repos</span>
+      <span class="pill gray">Supporting / internal repos</span>
+    </div>
+  </div>
+
+  <div class="grid-2">
+    <div class="card">
+      <h2>🗺️ Platform Alignment</h2>
+      <ul>
+        <li><strong>Architecture:</strong> explains the layered model of the platform.</li>
+        <li><strong>Systems:</strong> documents the functional software systems.</li>
+        <li><strong>Build:</strong> explains the engineering direction over time.</li>
+        <li><strong>Registry:</strong> provides canonical public identifiers for system-level components.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎯 Repo Map Purpose</h2>
+      <ul>
+        <li>Show where the most important repos fit in the architecture</li>
+        <li>Separate stable foundations from experiments and public interfaces</li>
+        <li>Clarify how public pages relate to underlying project repositories</li>
+        <li>Support long-term traceability as the ecosystem grows</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📜 Canon & Specifications Layer</h2>
+    <ul>
+      <li><strong>satoshium-canon</strong> — constitutional truth layer for platform definitions, claims, doctrine, and source-of-truth concepts</li>
+      <li><strong>satoshium-specs</strong> — structured specifications for agents, models, lifecycle logic, standards, and platform definitions</li>
+      <li><strong>satoshium-governance</strong> — governance doctrine, policy thinking, and coordination concepts that may inform future platform rules</li>
+    </ul>
+    <p class="muted">
+      These repositories move slowly. They define the stable conceptual structure that later systems, interfaces, and agents should inherit rather than invent on the fly.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>📚 Knowledge Engine & Documentation Layer</h2>
+    <ul>
+      <li><strong>satoshium-glossary</strong> — canonical terminology base for the emerging Knowledge Engine</li>
+      <li><strong>glossary-builder</strong> — interactive interface for creating, reviewing, and exploring platform terminology</li>
+      <li><strong>satoshium-docs</strong> — structured documentation, references, and supporting technical materials</li>
+      <li><strong>satoshium-journal</strong> — development record, milestone logs, and historical traceability of the build</li>
+      <li><strong>satoshium-master-timeline</strong> — long-horizon progress tracking and sequencing of major platform work</li>
+    </ul>
+    <p class="muted">
+      Shared language and documented history are part of the platform itself. This layer supports consistency, traceability, and future human + AI reasoning.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🛡️ Trust, Safety & Verification Layer</h2>
+    <ul>
+      <li><strong>satoshium-trust</strong> — trust primitives, verification logic, and patterns for governed intelligence infrastructure</li>
+      <li><strong>satoshium-safety</strong> — safety doctrine, constraints, and protective design patterns</li>
+      <li><strong>satoshium-aegis</strong> — public-facing direction for agent firewall and governed execution concepts</li>
+      <li><strong>satoshium-certifier</strong> — future verification and certification logic for assessing system or agent readiness</li>
+      <li><strong>satoshium-registry</strong> — registry patterns, identities, and structured indexing concepts for platform components</li>
+    </ul>
+    <p class="muted">
+      This layer exists to prevent Satoshium from becoming intelligence without discipline. Trust, verification, and safety are architectural requirements, not optional add-ons.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🤖 Intelligence, Core Logic & Agent Layer</h2>
+    <ul>
+      <li><strong>satoshium-core</strong> — shared platform logic, reusable utilities, and core patterns used across Satoshium systems</li>
+      <li><strong>satoshium-interface</strong> — interface direction for interacting with Satoshium systems, knowledge, and research flows</li>
+      <li><strong>satoshium-agent-lab</strong> — sandbox for testing different agent forms, internal workflows, and architectural ideas</li>
+      <li><strong>satoshium-agents</strong> — longer-term home for aligned agent systems as the architecture matures</li>
+      <li><strong>satoshium-curator</strong> — canon-aware curation, structured updates, and knowledge maintenance logic</li>
+      <li><strong>satoshium-echobot</strong> / <strong>satoshium-saynobot</strong> — project-specific agent experiments and applied behavioral concepts</li>
+    </ul>
+    <p class="muted">
+      Agents are not the starting point of Satoshium. They emerge from the knowledge, trust, and governance layers once the foundation is strong enough to support them.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🧪 Simulation, Labs & Scenario Layer</h2>
+    <ul>
+      <li><strong>satoshium-labs</strong> / public Labs environment — experimental public layer for interactive system exploration</li>
+      <li><strong>satoshium-scenarios</strong> — scenario-based modules for testing how systems behave in structured situations</li>
+      <li><strong>satoshium-simulations</strong> — simulation-oriented repo space for interactive or model-driven testing</li>
+      <li><strong>satoshium-demos</strong> — smaller public prototypes, interfaces, and testable demonstrations</li>
+      <li><strong>satoshium-future-uses</strong> — future-world use cases and applied scenario thinking for the broader Satoshium vision</li>
+    </ul>
+    <p class="muted">
+      This is the experimental reasoning track of the ecosystem. Simulation helps turn abstract concepts into testable ideas before they are treated as stable platform capabilities.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🌐 Public Surface & Experience Layer</h2>
+    <ul>
+      <li><strong>satoshium-progress</strong> — public build log, architecture portal, update record, and documentation gateway</li>
+      <li><strong>satoshium-site</strong> — main public narrative site and broader public-facing platform story</li>
+      <li><strong>satoshium-ui</strong> — user interface direction, visual systems, and design-alignment work</li>
+      <li><strong>satoshium-hub</strong> — potential coordination or entry-point layer for future platform navigation</li>
+      <li><strong>satoshium-academy</strong> — future educational surface for learning-oriented materials and structured onboarding</li>
+    </ul>
+    <p class="muted">
+      These repositories shape how the platform is encountered publicly. They do not replace the deeper layers beneath them; they expose them carefully.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🧰 Supporting Infrastructure & Internal Utility Repos</h2>
+    <ul>
+      <li><strong>satoshium-data</strong> — data structures, supporting assets, or future structured platform inputs</li>
+      <li><strong>satoshium-devtools</strong> — internal tooling and developer support workflows</li>
+      <li><strong>satoshium-utils</strong> — small utilities and support functions used across the workspace</li>
+      <li><strong>satoshium-internal</strong> — internal working documents, coordination notes, and private support materials</li>
+      <li><strong>satoshium-drafts</strong> — draft-stage documents, work-in-progress assets, and early content staging</li>
+      <li><strong>satoshium-template</strong> — repo template and structural baseline for future aligned repositories</li>
+    </ul>
+    <p class="muted">
+      Not every repo is a public system. Some exist to keep the workspace consistent, maintainable, and capable of supporting long-horizon platform growth.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🎬 Media, Storytelling & Narrative Layer</h2>
+    <ul>
+      <li><strong>satoshium-chronicles</strong> — narrative, story, or long-form historical framing for the project</li>
+      <li><strong>satoshium-glyphs</strong> — symbolic, visual, or design-oriented language for Satoshium concepts</li>
+      <li><strong>satoshium-founder</strong> / <strong>satoshium-mirror</strong> — founder-facing or reflective spaces that may support long-horizon project clarity</li>
+    </ul>
+    <p class="muted">
+      Satoshium is not only engineered. It is also interpreted, explained, and made understandable over time.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>🧭 Reading the Workspace as a Whole</h2>
+    <p class="muted">
+      The full Satoshium workspace is larger than the public repo map shown here. The public map focuses on repositories that most clearly support the platform's
+      constitutional layer, Knowledge Engine, trust systems, intelligence systems, simulation environments, and public-facing documentation.
+    </p>
+    <p class="muted">
+      As the ecosystem grows, the most system-critical repositories should continue to align with the Architecture page, the Build page, and the public Registry so that the platform remains understandable rather than merely expansive.
+    </p>
+  </div>
+ 
+ <!-- Footer mission statement + links -->
+      <hr />
+<div class="wrap reflection">
+<hr />
+<div id="random-saying" class="muted" style="margin-bottom:14px; max-width:760px;">
+  Satoshium is being built slowly, in public, and with architectural discipline.
+</div>
+<hr />
+
+<div id="footer-container"></div>
+
+<script src="/assets/sayings.js"></script>
+<script>
+fetch("/components/footer.html")
+ .then(response => response.text())
+ .then(data => {
+ document.getElementById("footer-container").innerHTML = data;
+ });
+</script>
+</body>
+</html>
