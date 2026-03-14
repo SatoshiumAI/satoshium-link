@@ -1,5 +1,5 @@
 (async function () {
-  const container = document.getElementById("topbar-container");
+  const container = document.getElementById("topbar-slot");
   if (!container) return;
 
   const host = window.location.hostname.toLowerCase();
