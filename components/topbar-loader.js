@@ -58,7 +58,7 @@
         }
      } else {
 
-  if (host.includes("satoshiumai.github.io") && path.includes("satoshium-progress")) {
+  if (host.includes("satoshiumai.github.io")) {
     setActive("progress");
 
   } else if (host.includes("satoshium.link")) {
