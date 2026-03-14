@@ -80,7 +80,7 @@
         } else if (host.includes("satoshium.us")) {
           setActive("us");
         } else if (host.includes("satoshium.ai")) {
-          setActive("main-site");
+          setActive("platform");
         } else {
           setActive("link");
         }
