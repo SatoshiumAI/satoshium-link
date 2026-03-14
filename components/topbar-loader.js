@@ -56,12 +56,44 @@
         } else {
           setActive("home");
         }
-      } else {
-        if (host.includes("satoshium.link")) {
-            setActive("link"); 
-          else if (path.includes("satoshium-progress/")) {
-            setActive("progress");
-        }
+     } else {
+
+  if (host.includes("satoshiumai.github.io") && path.includes("satoshium-progress")) {
+    setActive("progress");
+
+  } else if (host.includes("satoshium.link")) {
+    setActive("link");
+
+  } else if (host.includes("satoshium.dev")) {
+    setActive("dev");
+
+  } else if (host.includes("satoshium.xyz")) {
+    setActive("xyz");
+
+  } else if (host.includes("satoshium.info")) {
+    if (path.includes("/workspace/")) {
+      setActive("workspace");
+    } else {
+      setActive("info");
+    }
+
+  } else if (host.includes("satoshium.net")) {
+    setActive("net");
+
+  } else if (host.includes("satoshium.store")) {
+    setActive("store");
+
+  } else if (host.includes("satoshium.us")) {
+    setActive("us");
+
+  } else if (host.includes("satoshium.ai")) {
+    setActive("main-site");
+
+  } else {
+    setActive("link");
+  }
+
+}
         } else if (host.includes("satoshium.dev")) {
           setActive("dev");
         } else if (host.includes("satoshium.xyz")) {
