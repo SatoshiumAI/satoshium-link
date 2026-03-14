@@ -10,7 +10,7 @@
 
   const topbarUrl = isPlatform
     ? "https://satoshium.link/components/topbar-ai.html"
-    : "https://satoshium.link/components/topbaruniverse.html";
+    : "https://satoshium.link/components/topbar-universe.html";
 
   fetch(topbarUrl, { cache: "no-store" })
     .then(function (response) {
