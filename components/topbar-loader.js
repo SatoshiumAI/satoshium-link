@@ -58,11 +58,10 @@
         }
       } else {
         if (host.includes("satoshium.link")) {
-          if (path.includes("/progress/")) {
+            setActive("link"); 
+          else if (path.includes("satoshium-progress/")) {
             setActive("progress");
-          } else {
-            setActive("link");
-          }
+        }
         } else if (host.includes("satoshium.dev")) {
           setActive("dev");
         } else if (host.includes("satoshium.xyz")) {
