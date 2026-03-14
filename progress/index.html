@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Satoshium — Platform Build Progress</title>
+
+<style>
+
+:root{
+ --card-wm:url('https://satoshium.link/assets/seal.png');
+ --bg:#07090d;
+ --panel:#0c1018;
+ --text:#e8edf7;
+ --muted:#9aa7bd;
+ --gold:#d6a34a;
+ --gold2:#f4c36a;
+ --line:rgba(214,163,74,.18);
+}
+
+*{box-sizing:border-box}
+
+html,body{
+ margin:0;
+ padding:0;
+ background:var(--bg);
+ color:var(--text);
+ font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+ line-height:1.55;
+}
+
+body{padding-top:80px}
+
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--gold)}
+
+.wrap{max-width:980px;margin:0 auto;padding:0 18px}
+.content{padding:34px 18px 60px}
+
+h1,h2{margin:0 0 10px}
+h1{font-size:30px;color:var(--gold2)}
+h2{font-size:20px;color:var(--gold2)}
+
+hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+
+.muted{color:var(--muted)}
+
+.pill{
+ display:inline-flex;
+ align-items:center;
+ gap:8px;
+ padding:8px 10px;
+ border:1px solid var(--line);
+ border-radius:999px;
+ background:rgba(214,163,74,.08);
+ color:var(--gold2);
+ font-size:12px;
+ font-weight:700;
+}
+
+.card{
+ position:relative;
+ overflow:hidden;
+ background:linear-gradient(to bottom right,rgba(12,16,24,.94),rgba(12,16,24,.88));
+ border:1px solid rgba(214,163,74,.15);
+ border-radius:16px;
+ padding:16px;
+ margin:16px 0;
+ box-shadow:0 0 0 1px rgba(214,163,74,.08),0 20px 50px rgba(0,0,0,.45);
+ transition:transform .18s ease,box-shadow .18s ease;
+}
+
+.card:hover{
+ transform:translateY(-3px);
+ box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.card::before{
+ content:"";
+ position:absolute;
+ inset:-60px;
+ background-image:var(--card-wm);
+ background-repeat:no-repeat;
+ background-size:min(720px,70vw);
+ background-position:right -140px center;
+ opacity:.028;
+ filter:blur(1px);
+ pointer-events:none;
+ z-index:0;
+}
+
+.card > *{position:relative;z-index:1}
+
+.grid-2{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:16px;
+}
+
+@media(max-width:760px){
+ .grid-2{grid-template-columns:1fr}
+}
+
+</style>
+</head>
+
+<body id="top">
+
+<div id="topbar-slot"></div>
+<script src="https://satoshium.link/components/topbar-loader.js"></script>
+
+<main class="wrap content">
+
+<div class="pill">🧭 Platform Progress</div>
+
+<h1 style="margin-top:12px;">Satoshium Build Progress</h1>
+
+<p class="muted" style="max-width:820px;">
+This page documents the ongoing public build of the Satoshium platform.
+It exists as a reference point for architectural progress, domain migrations,
+and the evolving structure of the Satoshium ecosystem.
+</p>
+
+<p class="muted" style="max-width:820px;">
+Satoshium is being developed slowly and publicly as decentralized intelligence infrastructure aligned with the Bitcoin standard.
+</p>
+
+<div class="card">
+
+<h2>Purpose of This Page</h2>
+
+<p>
+This progress page exists to track the visible development of the Satoshium platform as its components expand across multiple domains.
+</p>
+
+<p class="muted">
+The platform has transitioned from an early unified build environment into a layered ecosystem where different domains serve distinct roles.
+This page helps document that transition and provide a reference point for observers following the project's development.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>🌐 Satoshium Domain Architecture</h2>
+
+<p class="muted">
+The Satoshium ecosystem is organized across multiple domains that represent different layers of the platform.
+</p>
+
+<div class="grid-2">
+
+<div class="card">
+<h3>🌐 satoshium.ai</h3>
+<p class="muted">
+Main public platform and primary introduction to the Satoshium ecosystem.
+</p>
+<p><a href="https://satoshium.ai/" target="_blank">Visit →</a></p>
+</div>
+
+<div class="card">
+<h3>📚 satoshium.info</h3>
+<p class="muted">
+Knowledge library, education resources, documentation, and long-form reference materials.
+</p>
+<p><a href="https://satoshium.info/" target="_blank">Visit →</a></p>
+</div>
+
+<div class="card">
+<h3>🧪 satoshium.xyz</h3>
+<p class="muted">
+Experimental labs, prototypes, and exploratory system concepts.
+</p>
+<p><a href="https://satoshium.xyz/" target="_blank">Visit →</a></p>
+</div>
+
+<div class="card">
+<h3>🛰️ satoshium.net</h3>
+<p class="muted">
+Infrastructure layer for network architecture, systems, and service topology.
+</p>
+<p><a href="https://satoshium.net/" target="_blank">Visit →</a></p>
+</div>
+
+<div class="card">
+<h3>🛍️ satoshium.store</h3>
+<p class="muted">
+Merchandise and cultural layer for symbolic artifacts representing the Satoshium ecosystem.
+</p>
+<p><a href="https://satoshium.store/" target="_blank">Visit →</a></p>
+</div>
+
+<div class="card">
+<h3>🔗 satoshium.link</h3>
+<p class="muted">
+Navigation and routing layer used for directories, entry points, and platform references.
+</p>
+<p><a href="https://satoshium.link/" target="_blank">Visit →</a></p>
+</div>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>Current Build Phase</h2>
+
+<ul>
+<li>✅ Phase004 domain architecture migration underway</li>
+<li>✅ Content moved from the original progress environment into dedicated domains</li>
+<li>✅ Library and media archive relocated to satoshium.info</li>
+<li>✅ Platform systems and services distributed across domain layers</li>
+</ul>
+
+<p class="muted" style="margin-top:10px;">
+This page will continue to record structural changes and platform milestones as development progresses.
+</p>
+
+</div>
+
+<div class="card">
+
+<h2>Build Philosophy</h2>
+
+<p>
+Satoshium is not being built as a conventional product launch.
+It is being developed as a long-horizon public infrastructure project.
+</p>
+
+<p class="muted">
+The focus is durability, transparency, and architectural clarity rather than speed or hype.
+</p>
+
+</div>
+
+<hr>
+
+<div id="random-saying" class="muted" style="margin-bottom:14px;max-width:760px;">
+Satoshium is being built slowly, in public, and with architectural discipline.
+</div>
+
+<hr>
+
+<div id="footer-container"></div>
+
+</main>
+
+<script src="https://satoshium.link/assets/sayings.js"></script>
+
+<script>
+fetch("https://satoshium.link/components/footer.html")
+.then(response => response.text())
+.then(data => {
+document.getElementById("footer-container").innerHTML=data;
+});
+</script>
+
+</body>
+</html>
