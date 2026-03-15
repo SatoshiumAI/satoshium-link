@@ -1,8 +1,6 @@
 ---
 ---
 
-@import "{{ site.theme }}";
-
 :root{
   --bg:#07090d;
   --panel:#0c1018;
