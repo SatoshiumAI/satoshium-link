@@ -42,6 +42,18 @@ a:hover{color:var(--gold)}
  padding:14px 0;
 }
 
+.topnav a {
+  transition: color .18s ease, opacity .18s ease, border-color .18s ease;
+}
+
+.topnav a:hover {
+  opacity: 1;
+}
+
+.topnav a.active {
+  border-bottom: 1px solid rgba(214,163,74,.65);
+}
+ 
 .brand{
  display:flex;
  align-items:center;
