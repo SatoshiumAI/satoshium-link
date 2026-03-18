@@ -53,6 +53,8 @@
         setActive("repomap");
       } else if (pathStarts("/registry/")) {
         setActive("registry");
+      } else if (pathStarts("/connect/")) {
+        setActive("connect");
       } else {
         setActive("home");
       }
