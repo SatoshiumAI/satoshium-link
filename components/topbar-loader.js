@@ -27,113 +27,113 @@
     if (el) el.classList.add("active");
   }
 
-  function applyActiveState() {
-    if (isPlatform) {
-      if (path === "/" || path === "/index.html") {
-        setActive("home");
-      } else if (pathStarts("/start-here/")) {
-        setActive("start-here");
-      } else if (
-  pathStarts("/mentor") ||
-  pathStarts("/start-here/onboarding-mentor")
-) {
-      } else if (pathStarts("/manifesto/")) {
-        setActive("manifesto");
-      } else if (pathStarts("/architecture/")) {
-        setActive("architecture");
-      } else if (pathStarts("/systems/")) {
-        setActive("systems");
-      } else if (pathStarts("/services/")) {
-        setActive("services");
-      } else if (pathStarts("/education/")) {
-        setActive("education");
-      } else if (pathStarts("/labs/")) {
-        setActive("labs");
-      } else if (pathStarts("/build/")) {
-        setActive("build");
-      } else if (pathStarts("/updates/")) {
-        setActive("updates");
-      } else if (pathStarts("/repo-map/") || pathStarts("/repos/")) {
-        setActive("repomap");
-      } else if (pathStarts("/registry/")) {
-        setActive("registry");
-      } else if (pathStarts("/connect/")) {
-        setActive("connect");
-      } else {
-        setActive("home");
-      }
-      return;
-    }
-
-   if (path.includes("/manifesto")) setActive("manifesto");
-
-    // ===== Universe topbar =====
-
-    if (
-      hostIs("satoshiumai.github.io") &&
-      (path === "/satoshium-progress/" ||
-        path === "/satoshium-progress" ||
-        path.startsWith("/satoshium-progress/"))
+function applyActiveState() {
+  if (isPlatform) {
+    if (path === "/" || path === "/index.html") {
+      setActive("home");
+    } else if (
+      pathStarts("/mentor") ||
+      pathStarts("/start-here/onboarding-mentor")
     ) {
-      setActive("progress");
-      return;
+      setActive("mentor");
+    } else if (pathStarts("/start-here/")) {
+      setActive("start-here");
+    } else if (pathStarts("/manifesto/")) {
+      setActive("manifesto");
+    } else if (pathStarts("/architecture/")) {
+      setActive("architecture");
+    } else if (pathStarts("/systems/")) {
+      setActive("systems");
+    } else if (pathStarts("/services/")) {
+      setActive("services");
+    } else if (pathStarts("/education/")) {
+      setActive("education");
+    } else if (pathStarts("/labs/")) {
+      setActive("labs");
+    } else if (pathStarts("/build/")) {
+      setActive("build");
+    } else if (pathStarts("/updates/")) {
+      setActive("updates");
+    } else if (pathStarts("/repo-map/") || pathStarts("/repos/")) {
+      setActive("repomap");
+    } else if (pathStarts("/registry/")) {
+      setActive("registry");
+    } else if (pathStarts("/connect/")) {
+      setActive("connect");
+    } else {
+      setActive("home");
     }
-
-    if (
-      hostIs("satoshium.link", "www.satoshium.link") &&
-      pathStarts("/progress/")
-    ) {
-      setActive("progress");
-      return;
-    }
-
-    if (hostIs("satoshium.link", "www.satoshium.link")) {
-      setActive("link");
-      return;
-    }
-
-    if (hostIs("satoshium.dev", "www.satoshium.dev")) {
-      setActive("dev");
-      return;
-    }
-
-    if (hostIs("satoshium.xyz", "www.satoshium.xyz")) {
-      setActive("xyz");
-      return;
-    }
-
-    if (hostIs("satoshium.info", "www.satoshium.info")) {
-      if (pathStarts("/workspace/")) {
-        setActive("workspace");
-      } else {
-        setActive("info");
-      }
-      return;
-    }
-
-    if (hostIs("satoshium.net", "www.satoshium.net")) {
-      setActive("net");
-      return;
-    }
-
-    if (hostIs("satoshium.store", "www.satoshium.store")) {
-      setActive("store");
-      return;
-    }
-
-    if (hostIs("satoshium.us", "www.satoshium.us")) {
-      setActive("us");
-      return;
-    }
-
-    if (hostIs("satoshium.ai", "www.satoshium.ai")) {
-      setActive("main-site");
-      return;
-    }
-
-    setActive("link");
+    return;
   }
 
+  if (path.includes("/manifesto")) setActive("manifesto");
+
+  // ===== Universe topbar =====
+
+  if (
+    hostIs("satoshiumai.github.io") &&
+    (path === "/satoshium-progress/" ||
+      path === "/satoshium-progress" ||
+      path.startsWith("/satoshium-progress/"))
+  ) {
+    setActive("progress");
+    return;
+  }
+
+  if (
+    hostIs("satoshium.link", "www.satoshium.link") &&
+    pathStarts("/progress/")
+  ) {
+    setActive("progress");
+    return;
+  }
+
+  if (hostIs("satoshium.link", "www.satoshium.link")) {
+    setActive("link");
+    return;
+  }
+
+  if (hostIs("satoshium.dev", "www.satoshium.dev")) {
+    setActive("dev");
+    return;
+  }
+
+  if (hostIs("satoshium.xyz", "www.satoshium.xyz")) {
+    setActive("xyz");
+    return;
+  }
+
+  if (hostIs("satoshium.info", "www.satoshium.info")) {
+    if (pathStarts("/workspace/")) {
+      setActive("workspace");
+    } else {
+      setActive("info");
+    }
+    return;
+  }
+
+  if (hostIs("satoshium.net", "www.satoshium.net")) {
+    setActive("net");
+    return;
+  }
+
+  if (hostIs("satoshium.store", "www.satoshium.store")) {
+    setActive("store");
+    return;
+  }
+
+  if (hostIs("satoshium.us", "www.satoshium.us")) {
+    setActive("us");
+    return;
+  }
+
+  if (hostIs("satoshium.ai", "www.satoshium.ai")) {
+    setActive("main-site");
+    return;
+  }
+
+  setActive("link");
+}
   async function tryFetch(url) {
     const response = await fetch(url, { cache: "no-store" });
     if (!response.ok) {
