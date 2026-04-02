@@ -117,6 +117,12 @@ function applyActiveState() {
     return;
   }
 
+  if (
+    hostIs("satoshium.games", "www.satoshium.games")) {
+    setActive("games");
+    return;
+  }
+
   if (hostIs("satoshium.store", "www.satoshium.store")) {
     setActive("store");
     return;
