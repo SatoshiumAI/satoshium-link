@@ -1,25 +1,21 @@
 window.initSatoshiumSignal = function initSatoshiumSignal() {
-  const existingButton = document.getElementById("signalToggle");
-  if (!existingButton) return;
+  const signalToggle = document.getElementById("signalToggle");
+  if (!signalToggle) return;
 
-  if (existingButton.dataset.signalBound === "true") return;
-  existingButton.dataset.signalBound = "true";
+  if (signalToggle.dataset.signalBound === "true") return;
+  signalToggle.dataset.signalBound = "true";
 
   const STORAGE_KEY = "satoshium_signal_enabled";
 
   let audioCtx = null;
   let masterGain = null;
   let carrier = null;
-  let shimmer = null;
+  let overtone = null;
   let drift = null;
   let driftGain = null;
-  let breath = null;
-  let breathGain = null;
   let carrierGain = null;
-  let shimmerGain = null;
+  let overtoneGain = null;
   let isOn = false;
-
-  const signalToggle = existingButton;
 
   function updateButton(state, labelOverride = null) {
     isOn = state;
@@ -43,58 +39,49 @@ window.initSatoshiumSignal = function initSatoshiumSignal() {
     await ensureAudioContext();
 
     masterGain = audioCtx.createGain();
-    masterGain.gain.value = 0.0001;
+    masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
 
     carrier = audioCtx.createOscillator();
     carrier.type = "sine";
-    carrier.frequency.value = 58;
+    carrier.frequency.setValueAtTime(58, audioCtx.currentTime);
 
-    shimmer = audioCtx.createOscillator();
-    shimmer.type = "triangle";
-    shimmer.frequency.value = 116.2;
+    overtone = audioCtx.createOscillator();
+    overtone.type = "sine";
+    overtone.frequency.setValueAtTime(116, audioCtx.currentTime);
 
     drift = audioCtx.createOscillator();
     drift.type = "sine";
-    drift.frequency.value = 0.045;
+    drift.frequency.setValueAtTime(0.03, audioCtx.currentTime);
 
     driftGain = audioCtx.createGain();
-    driftGain.gain.value = 1.8;
-
-    breath = audioCtx.createOscillator();
-    breath.type = "sine";
-    breath.frequency.value = 0.018;
-
-    breathGain = audioCtx.createGain();
-    breathGain.gain.value = 0.0035;
-
-    shimmerGain = audioCtx.createGain();
-    shimmerGain.gain.value = 0.0038;
+    driftGain.gain.setValueAtTime(0.8, audioCtx.currentTime);
 
     carrierGain = audioCtx.createGain();
-    carrierGain.gain.value = 0.0115;
+    carrierGain.gain.setValueAtTime(0.012, audioCtx.currentTime);
+
+    overtoneGain = audioCtx.createGain();
+    overtoneGain.gain.setValueAtTime(0.0025, audioCtx.currentTime);
 
     drift.connect(driftGain);
     driftGain.connect(carrier.frequency);
 
-    breath.connect(breathGain);
-    breathGain.connect(masterGain.gain);
-
     carrier.connect(carrierGain);
-    shimmer.connect(shimmerGain);
+    overtone.connect(overtoneGain);
 
     carrierGain.connect(masterGain);
-    shimmerGain.connect(masterGain);
+    overtoneGain.connect(masterGain);
     masterGain.connect(audioCtx.destination);
 
     const now = audioCtx.currentTime;
-    masterGain.gain.cancelScheduledValues(now);
-    masterGain.gain.setValueAtTime(0.0001, now);
-    masterGain.gain.linearRampToValueAtTime(0.016, now + 2.2);
 
-    carrier.start();
-    shimmer.start();
-    drift.start();
-    breath.start();
+    carrier.start(now);
+    overtone.start(now);
+    drift.start(now);
+
+    masterGain.gain.cancelScheduledValues(now);
+    masterGain.gain.setValueAtTime(0, now);
+    masterGain.gain.linearRampToValueAtTime(0.9, now + 0.05);
+    masterGain.gain.exponentialRampToValueAtTime(1.0, now + 1.8);
 
     localStorage.setItem(STORAGE_KEY, "true");
     updateButton(true);
@@ -108,34 +95,30 @@ window.initSatoshiumSignal = function initSatoshiumSignal() {
     }
 
     const now = audioCtx.currentTime;
+
     masterGain.gain.cancelScheduledValues(now);
-    masterGain.gain.setValueAtTime(masterGain.gain.value, now);
-    masterGain.gain.linearRampToValueAtTime(0.0001, now + 1.5);
+    masterGain.gain.setValueAtTime(Math.max(masterGain.gain.value, 0.0001), now);
+    masterGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
 
     setTimeout(async () => {
-      try { carrier && carrier.stop(); } catch (e) {}
-      try { shimmer && shimmer.stop(); } catch (e) {}
-      try { drift && drift.stop(); } catch (e) {}
-      try { breath && breath.stop(); } catch (e) {}
+      try { carrier?.stop(); } catch (e) {}
+      try { overtone?.stop(); } catch (e) {}
+      try { drift?.stop(); } catch (e) {}
 
-      try { carrier && carrier.disconnect(); } catch (e) {}
-      try { shimmer && shimmer.disconnect(); } catch (e) {}
-      try { drift && drift.disconnect(); } catch (e) {}
-      try { driftGain && driftGain.disconnect(); } catch (e) {}
-      try { breath && breath.disconnect(); } catch (e) {}
-      try { breathGain && breathGain.disconnect(); } catch (e) {}
-      try { carrierGain && carrierGain.disconnect(); } catch (e) {}
-      try { shimmerGain && shimmerGain.disconnect(); } catch (e) {}
-      try { masterGain && masterGain.disconnect(); } catch (e) {}
+      try { carrier?.disconnect(); } catch (e) {}
+      try { overtone?.disconnect(); } catch (e) {}
+      try { drift?.disconnect(); } catch (e) {}
+      try { driftGain?.disconnect(); } catch (e) {}
+      try { carrierGain?.disconnect(); } catch (e) {}
+      try { overtoneGain?.disconnect(); } catch (e) {}
+      try { masterGain?.disconnect(); } catch (e) {}
 
       carrier = null;
-      shimmer = null;
+      overtone = null;
       drift = null;
       driftGain = null;
-      breath = null;
-      breathGain = null;
       carrierGain = null;
-      shimmerGain = null;
+      overtoneGain = null;
       masterGain = null;
 
       try {
@@ -143,7 +126,7 @@ window.initSatoshiumSignal = function initSatoshiumSignal() {
       } catch (e) {}
 
       audioCtx = null;
-    }, 1600);
+    }, 1300);
 
     localStorage.setItem(STORAGE_KEY, "false");
     updateButton(false);
