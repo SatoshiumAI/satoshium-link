@@ -417,12 +417,17 @@ Architecture, shared knowledge, verifiable claims, structured systems, and simul
 <div id="footer-container"></div>
 
 <script src="/assets/sayings.js"></script>
+<script src="/assets/signal-toggle.js"></script>
 <script>
 fetch("/components/footer.html")
- .then(response => response.text())
- .then(data => {
- document.getElementById("footer-container").innerHTML = data;
- });
+  .then(response => response.text())
+  .then(data => {
+    document.getElementById("footer-container").innerHTML = data;
+
+    if (window.initSatoshiumSignal) {
+      window.initSatoshiumSignal();
+    }
+  });
 </script>
  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "ae37fa4d141f4bb49af2af79ee3fbf48"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
