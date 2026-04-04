@@ -146,3 +146,4 @@ window.initSatoshiumSignal = function initSatoshiumSignal() {
     updateButton(false, "Signal: READY");
   }
 };
+Why this should sound cleaner
