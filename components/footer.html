@@ -33,6 +33,7 @@
 
     <!-- Status bar -->
     <div class="footer-status" role="group" aria-label="Platform status">
+      <span class="chip"><button id="signalToggle">Signal: OFF</button></span>
       <span class="chip"><span class="dot on" aria-hidden="true"></span>Universe: Expanding</span>
       <span class="chip"><span class="dot warn" aria-hidden="true"></span>Build: In Progress</span>
       <span class="chip"><span class="dot on" aria-hidden="true"></span>Docs: Growing</span>
@@ -65,6 +66,7 @@
         <a href="https://satoshium.info" target="_blank" rel="noopener">satoshium.info</a>
         <a href="https://satoshium.xyz" target="_blank" rel="noopener">satoshium.xyz</a>
         <a href="https://satoshium.net" target="_blank" rel="noopener">satoshium.net</a>
+        <a href="https://satoshium.games" target="_blank" rel="noopener">satoshium.games</a> |
         <a href="https://satoshium.store" target="_blank" rel="noopener">satoshium.store</a>
         <a href="https://satoshium.dev" target="_blank" rel="noopener">satoshium.dev</a>
         <a href="https://satoshium.us" target="_blank" rel="noopener">satoshium.us</a>
@@ -152,7 +154,7 @@
 
   </div>
 
-  <!-- Self-contained footer styles -->
+  <!-- Self-contained footer styles & Audio Toggle -->
   <style>
     .footer{
       border-top:1px solid var(--line);
@@ -379,5 +381,44 @@
     .footer-disclaimer{
       margin:0 0 10px;
     }
+
+let audioCtx;
+let oscillator;
+let gainNode;
+let lfo;
+
+document.getElementById("signalToggle").onclick = () => {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    oscillator = audioCtx.createOscillator();
+    gainNode = audioCtx.createGain();
+    lfo = audioCtx.createOscillator();
+    lfoGain = audioCtx.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = 72;
+
+    lfo.frequency.value = 0.08;
+    lfoGain.gain.value = 4;
+
+    lfo.connect(lfoGain);
+    lfoGain.connect(oscillator.frequency);
+
+    gainNode.gain.value = 0.02;
+
+    oscillator.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    oscillator.start();
+    lfo.start();
+
+    document.getElementById("signalToggle").innerText = "Signal: ON";
+  } else {
+    audioCtx.close();
+    audioCtx = null;
+    document.getElementById("signalToggle").innerText = "Signal: OFF";
+  }
+};
   </style>
 </footer>
