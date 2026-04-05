@@ -126,6 +126,98 @@ li{margin-bottom:8px}
 .button:hover{
   background:rgba(214,163,74,.14);
 }
+
+.icon-registry{
+  padding:28px;
+}
+
+.registry-head{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:16px;
+  margin-bottom:18px;
+}
+
+.registry-head p{
+  max-width:760px;
+  margin:0;
+}
+
+.table-wrap{
+  width:100%;
+  overflow-x:auto;
+  border:1px solid rgba(214,163,74,.12);
+  border-radius:14px;
+  background:rgba(255,255,255,.015);
+}
+
+.icon-table{
+  width:100%;
+  border-collapse:collapse;
+  min-width:760px;
+}
+
+.icon-table thead th{
+  text-align:left;
+  font-size:13px;
+  letter-spacing:.03em;
+  color:var(--gold2);
+  padding:16px 18px;
+  border-bottom:1px solid rgba(214,163,74,.16);
+  background:rgba(214,163,74,.05);
+}
+
+.icon-table tbody td{
+  padding:18px;
+  border-bottom:1px solid rgba(214,163,74,.10);
+  vertical-align:middle;
+}
+
+.icon-table tbody tr:last-child td{
+  border-bottom:none;
+}
+
+.icon-table tbody tr:hover{
+  background:rgba(214,163,74,.04);
+}
+
+.icon-table code{
+  color:#f3d59a;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size:13px;
+  background:rgba(214,163,74,.08);
+  padding:4px 8px;
+  border-radius:999px;
+}
+
+.icon-col{
+  width:120px;
+}
+
+.icon-cell{
+  text-align:center;
+}
+
+.icon-cell img{
+  width:56px;
+  height:56px;
+  display:inline-block;
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.08));
+}
+
+@media (max-width: 700px){
+  .icon-cell img{
+    width:48px;
+    height:48px;
+  }
+
+  .icon-table thead th,
+  .icon-table tbody td{
+    padding:14px 14px;
+  }
+}
+  
 </style>
 </head>
 <body id="top">
@@ -133,100 +225,89 @@ li{margin-bottom:8px}
 <script src="https://satoshium.link/components/topbar-loader.js"></script>
 
 <main class="wrap content">
-  <div class="pill">Identity Icons</div>
-  <h2>Satoshium Layer Identity Icons</h2>
-  <p class="muted hero-note">
-    Each Satoshium domain uses a signal-layer favicon derived from a shared network boundary + bolt glyph. Color indicates functional role.
-  </p>
-  <p>
-    All Satoshium domains share a common signal-boundary glyph.
-    - The outer ring represents the network integrity perimeter.
-    - The bolt represents active signal execution.
-    - Color identifies the functional layer within the Satoshium system.
-  </p>
-  <section class="card">
-  <h2>Satoshium Layer Identity Icons</h2>
-  <p>
-    Each Satoshium domain uses a signal-layer favicon derived from a shared
-    network boundary + bolt glyph. Color indicates functional role.
-  </p>
+<div class="pill">Identity Icons</div>
+<h2>Satoshium Layer Identity Icons</h2>
+<p class="muted hero-note">
+  Each Satoshium domain uses a shared signal-boundary favicon. The outer ring represents the network integrity perimeter, the bolt represents active signal execution, and color identifies functional role across the Satoshium Universe.
+</p>
+  <section class="card icon-registry">
+  <div class="registry-head">
+    <div>
+      <h2>Layer Identity Registry</h2>
+      <p class="muted">
+        Shared signal-boundary glyph. Domain color identifies functional role across the Satoshium Universe.
+      </p>
+    </div>
+  </div>
 
-  <table class="icon-table">
-    <thead>
-      <tr>
-        <th>Domain</th>
-        <th>Layer</th>
-        <th>Color</th>
-        <th>Icon</th>
-      </tr>
-    </thead>
-    <tbody>
-
-      <tr>
-        <td>satoshium.ai</td>
-        <td>Intelligence</td>
-        <td>#00eaff</td>
-        <td><img src="https://satoshium.ai/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.net</td>
-        <td>Infrastructure</td>
-        <td>#d6a34a</td>
-        <td><img src="https://satoshium.net/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.info</td>
-        <td>Knowledge</td>
-        <td>#4da3ff</td>
-        <td><img src="https://satoshium.info/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.xyz</td>
-        <td>Experimental</td>
-        <td>#9b6cff</td>
-        <td><img src="https://satoshium.xyz/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.dev</td>
-        <td>Builders</td>
-        <td>#34d399</td>
-        <td><img src="https://satoshium.dev/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.link</td>
-        <td>Gateway</td>
-        <td>#ffffff</td>
-        <td><img src="https://satoshium.link/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.store</td>
-        <td>Artifacts</td>
-        <td>#c47a2c</td>
-        <td><img src="https://satoshium.store/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.us</td>
-        <td>Policy</td>
-        <td>#b91c1c</td>
-        <td><img src="https://satoshium.us/assets/favicon.svg" width="32"></td>
-      </tr>
-
-      <tr>
-        <td>satoshium.games</td>
-        <td>Simulation</td>
-        <td>#ff2bd6</td>
-        <td><img src="https://satoshium.games/assets/favicon.svg" width="32"></td>
-      </tr>
-
-    </tbody>
-  </table>
+  <div class="table-wrap">
+    <table class="icon-table">
+      <thead>
+        <tr>
+          <th>Domain</th>
+          <th>Layer</th>
+          <th>Color</th>
+          <th class="icon-col">Icon</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>satoshium.ai</strong></td>
+          <td>Intelligence</td>
+          <td><code>#00eaff</code></td>
+          <td class="icon-cell"><img src="https://satoshium.ai/assets/favicon.svg" alt="satoshium.ai icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.net</strong></td>
+          <td>Infrastructure</td>
+          <td><code>#d6a34a</code></td>
+          <td class="icon-cell"><img src="https://satoshium.net/assets/favicon.svg" alt="satoshium.net icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.info</strong></td>
+          <td>Knowledge</td>
+          <td><code>#4da3ff</code></td>
+          <td class="icon-cell"><img src="https://satoshium.info/assets/favicon.svg" alt="satoshium.info icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.xyz</strong></td>
+          <td>Experimental</td>
+          <td><code>#9b6cff</code></td>
+          <td class="icon-cell"><img src="https://satoshium.xyz/assets/favicon.svg" alt="satoshium.xyz icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.dev</strong></td>
+          <td>Builders</td>
+          <td><code>#34d399</code></td>
+          <td class="icon-cell"><img src="https://satoshium.dev/assets/favicon.svg" alt="satoshium.dev icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.link</strong></td>
+          <td>Gateway</td>
+          <td><code>#ffffff</code></td>
+          <td class="icon-cell"><img src="https://satoshium.link/assets/favicon.svg" alt="satoshium.link icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.store</strong></td>
+          <td>Artifacts</td>
+          <td><code>#c47a2c</code></td>
+          <td class="icon-cell"><img src="https://satoshium.store/assets/favicon.svg" alt="satoshium.store icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.us</strong></td>
+          <td>Policy</td>
+          <td><code>#b91c1c</code></td>
+          <td class="icon-cell"><img src="https://satoshium.us/assets/favicon.svg" alt="satoshium.us icon"></td>
+        </tr>
+        <tr>
+          <td><strong>satoshium.games</strong></td>
+          <td>Simulation</td>
+          <td><code>#ff2bd6</code></td>
+          <td class="icon-cell"><img src="https://satoshium.games/assets/favicon.svg" alt="satoshium.games icon"></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </section>
 </main>
 <div class="wrap reflection">
