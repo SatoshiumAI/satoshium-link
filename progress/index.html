@@ -9,6 +9,27 @@
 <meta name="theme-color" content="#ffffff">
 
 <title>Satoshium — Platform Build Progress</title>
+<!-- TIER 3 — SEO: added meta description (was missing) -->
+<meta name="description" content="Public build progress for the Satoshium platform — documenting architectural development, domain migrations, and the evolving structure of decentralized intelligence infrastructure aligned with the Bitcoin standard." />
+
+<!-- TIER 3 — SEO: Open Graph metadata -->
+<meta property="og:title" content="Satoshium — Platform Build Progress" />
+<meta property="og:description" content="Public build progress for the Satoshium platform — documenting architectural development, domain migrations, and the evolving structure of decentralized intelligence infrastructure aligned with the Bitcoin standard." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://satoshium.link/satoshium-progress/index.html" />
+<meta property="og:image" content="https://satoshium.link/assets/opengraph.jpg" />
+<meta property="og:site_name" content="Satoshium" />
+<meta property="og:locale" content="en_US" />
+
+<!-- TIER 3 — SEO: Twitter Card metadata -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Satoshium — Platform Build Progress" />
+<meta name="twitter:description" content="Public build progress for the Satoshium platform — documenting architectural development, domain migrations, and the evolving structure of decentralized intelligence infrastructure aligned with the Bitcoin standard." />
+<meta name="twitter:image" content="https://satoshium.link/assets/opengraph.jpg" />
+<meta name="twitter:site" content="@SatoshiumAI" />
+
+<!-- TIER 3 — SEO: canonical URL -->
+<link rel="canonical" href="https://satoshium.link/satoshium-progress/index.html" />
 
 <style>
 
@@ -38,6 +59,12 @@ body{padding-top:80px}
 
 a{color:var(--gold2);text-decoration:none}
 a:hover{color:var(--gold)}
+
+/* TIER 3 — ACCESSIBILITY: visible focus ring for keyboard navigation */
+a:focus-visible{
+ outline:2px solid var(--gold2);
+ outline-offset:2px;
+}
 
 .wrap{max-width:980px;margin:0 auto;padding:0 18px}
 .content{padding:34px 18px 60px}
@@ -119,6 +146,18 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
  .grid-2{grid-template-columns:1fr}
 }
 
+/* TIER 3 — ACCESSIBILITY: reduce motion for users who prefer it */
+@media(prefers-reduced-motion:reduce){
+ .wrap.content{
+  animation:none;
+  opacity:1;
+  transform:none;
+ }
+ .card{
+  transition:none;
+ }
+}
+
 </style>
 </head>
 
@@ -129,7 +168,7 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
 
 <main class="wrap content">
 
-<div class="pill">🧭 Platform Progress</div>
+<div class="pill">&#x1F9ED; Platform Progress</div>
 
 <h1 style="margin-top:12px;">Satoshium Build Progress</h1>
 
@@ -156,7 +195,7 @@ The platform has transitioned from an early unified build environment into a lay
 This page helps document that transition and provide a reference point for observers following the project's development.
 </p>
 </div>
- 
+
 <div class="card">
   <div class="phase-title">
     <h2>Recent Builds</h2>
@@ -190,9 +229,12 @@ The focus is durability, transparency, and architectural clarity rather than spe
 
 <div class="card">
 
-<h2>🌐 Explore the Satoshium Universe</h2>
+<h2>&#x1F310; Explore the Satoshium Universe</h2>
 
+<!-- TIER 3 — HTML: wrapped bare text in <p> tag (was outside any block element) -->
+<p>
 Explore the different layers of Satoshium — from platform and knowledge to experimentation, infrastructure, and real-world expression.
+</p>
 
 <p class="muted">
 The Satoshium ecosystem is organized across multiple domains that represent different layers of the platform.
@@ -201,64 +243,62 @@ The Satoshium ecosystem is organized across multiple domains that represent diff
 <div class="grid-2">
 
 <div class="card">
-<h3>🌐 satoshium.ai</h3>
+<h3>&#x1F310; satoshium.ai</h3>
 <p class="muted">
 Main public platform and primary introduction to the Satoshium ecosystem.
 </p>
-<p><a href="https://satoshium.ai/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.ai/" target="_blank">Visit &rarr;</a></p>
 </div>
 
 <div class="card">
-<h3>📚 satoshium.info</h3>
+<h3>&#x1F4DA; satoshium.info</h3>
 <p class="muted">
 Knowledge library, education resources, documentation, and long-form reference materials.
 </p>
-<p><a href="https://satoshium.info/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.info/" target="_blank">Visit &rarr;</a></p>
 </div>
 
 <div class="card">
-<h3>🧪 satoshium.xyz</h3>
+<h3>&#x1F9EA; satoshium.xyz</h3>
 <p class="muted">
 Experimental labs, prototypes, and exploratory system concepts.
 </p>
-<p><a href="https://satoshium.xyz/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.xyz/" target="_blank">Visit &rarr;</a></p>
 </div>
 
 <div class="card">
-<h3>🛰️ satoshium.net</h3>
+<h3>&#x1F6F0;&#xFE0F; satoshium.net</h3>
 <p class="muted">
 Infrastructure layer for network architecture, systems, and service topology.
 </p>
-<p><a href="https://satoshium.net/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.net/" target="_blank">Visit &rarr;</a></p>
 </div>
 
 <div class="card">
-<h3>🛍️ satoshium.store</h3>
+<h3>&#x1F6CD;&#xFE0F; satoshium.store</h3>
 <p class="muted">
 Merchandise and cultural layer for symbolic artifacts representing the Satoshium ecosystem.
 </p>
-<p><a href="https://satoshium.store/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.store/" target="_blank">Visit &rarr;</a></p>
 </div>
 
 <div class="card">
-<h3>🔗 satoshium.link</h3>
+<h3>&#x1F517; satoshium.link</h3>
 <p class="muted">
 Navigation and routing layer used for directories, entry points, and platform references.
 </p>
-<p><a href="https://satoshium.link/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.link/" target="_blank">Visit &rarr;</a></p>
 </div>
 
 </div>
 
 </div>
- 
-<hr>
 
+<hr />
 <div id="random-saying" class="muted" style="margin-bottom:14px;max-width:760px;">
 Satoshium is being built slowly, in public, and with architectural discipline.
 </div>
-
-<hr>
+<hr />
 
 <div id="footer-container"></div>
 
