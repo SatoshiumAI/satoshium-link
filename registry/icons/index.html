@@ -8,7 +8,29 @@
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#FF2BD6">
 
-<title>Satoshium Games</title>
+<title>Satoshium Layer Identity Icons | Icon Registry</title>
+<!-- TIER 3 — SEO: added meta description (was missing) -->
+<meta name="description" content="Satoshium Layer Identity Icons — shared signal-boundary favicon registry documenting domain color identity and functional role across the Satoshium decentralized intelligence ecosystem." />
+
+<!-- TIER 3 — SEO: Open Graph metadata -->
+<meta property="og:title" content="Satoshium Layer Identity Icons | Icon Registry" />
+<meta property="og:description" content="Satoshium Layer Identity Icons — shared signal-boundary favicon registry documenting domain color identity and functional role across the Satoshium decentralized intelligence ecosystem." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://satoshium.link/registry/index.html" />
+<meta property="og:image" content="https://satoshium.link/assets/opengraph.jpg" />
+<meta property="og:site_name" content="Satoshium" />
+<meta property="og:locale" content="en_US" />
+
+<!-- TIER 3 — SEO: Twitter Card metadata -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Satoshium Layer Identity Icons | Icon Registry" />
+<meta name="twitter:description" content="Satoshium Layer Identity Icons — shared signal-boundary favicon registry documenting domain color identity and functional role across the Satoshium decentralized intelligence ecosystem." />
+<meta name="twitter:image" content="https://satoshium.link/assets/opengraph.jpg" />
+<meta name="twitter:site" content="@SatoshiumAI" />
+
+<!-- TIER 3 — SEO: canonical URL -->
+<link rel="canonical" href="https://satoshium.link/registry/index.html" />
+
 <style>
 :root{
   --card-wm: url('https://satoshium.link/assets/seal.png');
@@ -27,8 +49,20 @@ html,body{
   background:var(--bg);
   color:var(--text);
   font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  /* TIER 3 — CSS: added line-height for consistent readability */
+  line-height:1.55;
 }
 body{padding-top:80px}
+
+a{color:var(--gold2);text-decoration:none}
+a:hover{color:var(--gold)}
+
+/* TIER 3 — ACCESSIBILITY: visible focus ring for keyboard navigation */
+a:focus-visible{
+  outline:2px solid var(--gold2);
+  outline-offset:2px;
+}
+
 .wrap{max-width:1100px;margin:0 auto;padding:0 18px}
 .wrap.content{
   opacity:0;
@@ -217,7 +251,19 @@ li{margin-bottom:8px}
     padding:14px 14px;
   }
 }
-  
+
+/* TIER 3 — ACCESSIBILITY: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce){
+  .wrap.content{
+    animation:none;
+    opacity:1;
+    transform:none;
+  }
+  .card{
+    transition:none;
+  }
+}
+
 </style>
 </head>
 <body id="top">
@@ -311,11 +357,11 @@ li{margin-bottom:8px}
 </section>
 </main>
 <div class="wrap reflection">
-  <hr>
+  <hr />
   <div id="random-saying" class="muted" style="margin-bottom:14px; max-width:760px;">
     Satoshium is being built slowly, in public, and with architectural discipline.
   </div>
-  <hr>
+  <hr />
   <div id="footer-container"></div>
 </div>
 
@@ -330,6 +376,3 @@ fetch("https://satoshium.link/components/footer.html")
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "1183478d1adc4f7ab3d63ff8cfaf459b"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
-
-  
-  
