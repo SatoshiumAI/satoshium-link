@@ -3,12 +3,33 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
- <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
 <link rel="alternate icon" href="/assets/favicon.ico">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta name="theme-color" content="#ffffff">
 
-<title>Satoshium — Gateway Layer</title>
+<title>Satoshium Link — Gateway Layer | Ecosystem Navigation &amp; Routing Hub</title>
+<!-- TIER 3 — SEO: added meta description (was missing) -->
+<meta name="description" content="Satoshium Link — the universal gateway and routing layer of the Satoshium Universe, providing navigation entry points across platform, knowledge, infrastructure, experimental, and community domains." />
+
+<!-- TIER 3 — SEO: Open Graph metadata -->
+<meta property="og:title" content="Satoshium Link — Gateway Layer | Ecosystem Navigation &amp; Routing Hub" />
+<meta property="og:description" content="Satoshium Link — the universal gateway and routing layer of the Satoshium Universe, providing navigation entry points across platform, knowledge, infrastructure, experimental, and community domains." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://satoshium.link/index.html" />
+<meta property="og:image" content="https://satoshium.link/assets/opengraph.jpg" />
+<meta property="og:site_name" content="Satoshium" />
+<meta property="og:locale" content="en_US" />
+
+<!-- TIER 3 — SEO: Twitter Card metadata -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Satoshium Link — Gateway Layer | Ecosystem Navigation &amp; Routing Hub" />
+<meta name="twitter:description" content="Satoshium Link — the universal gateway and routing layer of the Satoshium Universe, providing navigation entry points across platform, knowledge, infrastructure, experimental, and community domains." />
+<meta name="twitter:image" content="https://satoshium.link/assets/opengraph.jpg" />
+<meta name="twitter:site" content="@SatoshiumAI" />
+
+<!-- TIER 3 — SEO: canonical URL -->
+<link rel="canonical" href="https://satoshium.link/index.html" />
 
 <style>
 :root{
@@ -40,6 +61,13 @@ body{
 }
 a{color:var(--gold2);text-decoration:none}
 a:hover{color:var(--gold)}
+
+/* TIER 3 — ACCESSIBILITY: visible focus ring for keyboard navigation */
+a:focus-visible{
+ outline:2px solid var(--gold2);
+ outline-offset:2px;
+}
+
 .wrap{max-width:1080px;margin:0 auto;padding:0 18px}
 .content{padding:34px 18px 60px}
 
@@ -89,11 +117,12 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
 }
 .hero > *{position:relative;z-index:1}
 
+/* TIER 3 — CSS: consolidated duplicate .card blocks (was split across lines 92 and 121) */
 .card{
   position:relative;
   overflow:hidden;
   background:linear-gradient(to bottom right,rgba(12,16,24,.94),rgba(12,16,24,.88));
-  border:1px solid var(--line);
+  border:1px solid rgba(214,163,74,.15);
   border-radius:16px;
   padding:16px 16px;
   margin:16px 0;
@@ -117,9 +146,6 @@ hr{border:none;border-top:1px solid var(--line);margin:22px 0}
 .card:hover{
   transform:translateY(-3px);
   box-shadow:0 10px 25px rgba(0,0,0,.35);
-}
-.card{
-  border:1px solid rgba(214,163,74,.15);
 }
 
 .muted{color:var(--muted)}
@@ -196,18 +222,30 @@ ul{margin:8px 0 0 18px}
   .grid-2{grid-template-columns:1fr}
   h1{font-size:30px}
 }
+
+/* TIER 3 — ACCESSIBILITY: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce){
+ .wrap.content{
+  animation:none;
+  opacity:1;
+  transform:none;
+ }
+ .card{
+  transition:none;
+ }
+}
 </style>
 </head>
 <body id="top">
 <div id="topbar-slot" data-topbar="universe"></div>
 <script src="/components/topbar-loader.js"></script>
 <script src="https://satoshium.link/assets/signal-toggle.js"></script>
- 
+
 <main class="wrap content">
 
 <section class="hero">
 
-  <div class="pill">🔗 Satoshium Link • Gateway Layer</div>
+  <div class="pill">&#x1F517; Satoshium Link &#x2022; Gateway Layer</div>
 
   <h1 style="margin-top:14px;">The universal gateway to the Satoshium ecosystem.</h1>
 
@@ -224,7 +262,7 @@ ul{margin:8px 0 0 18px}
       Satoshium Universe based on your interests and goals.
     </p>
     <p>
-      <a href="https://satoshium.ai/mentor">Start with the Mentor →</a>
+      <a href="https://satoshium.ai/mentor">Start with the Mentor &#x2192;</a>
     </p>
   </div>
 
@@ -239,10 +277,10 @@ ul{margin:8px 0 0 18px}
   </div>
 
   <div class="statline">
-    <span class="stat">🔗 Gateway Layer</span>
-    <span class="stat">🧭 Ecosystem Navigation</span>
-    <span class="stat">📎 Routing Hub</span>
-    <span class="stat">🌐 Universal Entry Point</span>
+    <span class="stat">&#x1F517; Gateway Layer</span>
+    <span class="stat">&#x1F9ED; Ecosystem Navigation</span>
+    <span class="stat">&#x1F4CE; Routing Hub</span>
+    <span class="stat">&#x1F310; Universal Entry Point</span>
   </div>
 
 </section>
@@ -276,19 +314,19 @@ Think of this site as the gateway that connects all Satoshium domains.
 
 </div>
 
-</div>
+<!-- TIER 3 — HTML: removed stray closing </div> that had no matching opening tag -->
 
 <div class="card">
 
 <h2>Satoshium Domain Architecture</h2>
 
 <ul>
-<li><strong>satoshium.ai</strong> — public platform layer</li>
-<li><strong>satoshium.info</strong> — knowledge and documentation layer</li>
-<li><strong>satoshium.xyz</strong> — experimental systems</li>
-<li><strong>satoshium.net</strong> — infrastructure and network layer</li>
-<li><strong>satoshium.store</strong> — economic and merchandise layer</li>
-<li><strong>satoshium.link</strong> — gateway and routing layer</li>
+<li><strong>satoshium.ai</strong> &#x2014; public platform layer</li>
+<li><strong>satoshium.info</strong> &#x2014; knowledge and documentation layer</li>
+<li><strong>satoshium.xyz</strong> &#x2014; experimental systems</li>
+<li><strong>satoshium.net</strong> &#x2014; infrastructure and network layer</li>
+<li><strong>satoshium.store</strong> &#x2014; economic and merchandise layer</li>
+<li><strong>satoshium.link</strong> &#x2014; gateway and routing layer</li>
 </ul>
 
 <div class="note">
@@ -307,9 +345,9 @@ Together these domains form the expanding architecture of the Satoshium Universe
     This registry reinforces that Satoshium is a layered ecosystem of connected domains rather than a collection of unrelated sites.
   </p>
 
-  <a href="./registry/icons/" class="pill">View Icon Registry →</a>
+  <a href="./registry/icons/" class="pill">View Icon Registry &#x2192;</a>
 </div>
- 
+
 <div class="card">
 
 <h2>Possible Uses for This Domain</h2>
@@ -317,32 +355,32 @@ Together these domains form the expanding architecture of the Satoshium Universe
 <div class="grid-3">
 
 <div>
-<h3>🌐 Ecosystem Directory</h3>
+<h3>&#x1F310; Ecosystem Directory</h3>
 <p>A simple navigation hub linking all Satoshium domains.</p>
 </div>
 
 <div>
-<h3>📎 Clean Redirect Paths</h3>
+<h3>&#x1F4CE; Clean Redirect Paths</h3>
 <p>Short links such as satoshium.link/docs or satoshium.link/labs.</p>
 </div>
 
 <div>
-<h3>📱 QR Entry Point</h3>
+<h3>&#x1F4F1; QR Entry Point</h3>
 <p>Public gateway for presentations, stickers, and events.</p>
 </div>
 
 <div>
-<h3>🧭 Onboarding Hub</h3>
+<h3>&#x1F9ED; Onboarding Hub</h3>
 <p>A simple starting page for newcomers discovering the ecosystem.</p>
 </div>
 
 <div>
-<h3>🔗 Social Gateway</h3>
+<h3>&#x1F517; Social Gateway</h3>
 <p>One place to connect Satoshium's media, projects, and platforms.</p>
 </div>
 
 <div>
-<h3>📚 Public Resources</h3>
+<h3>&#x1F4DA; Public Resources</h3>
 <p>Short paths to important documents, tools, and community resources.</p>
 </div>
 
@@ -363,9 +401,12 @@ and additional systems are introduced over time.
 </div>
 <div class="card">
 
-<h2>🌐 Explore the Satoshium Universe</h2>
+<h2>&#x1F310; Explore the Satoshium Universe</h2>
 
-Explore the different layers of Satoshium — from platform and knowledge to experimentation, infrastructure, and real-world expression.
+<!-- TIER 3 — HTML: wrapped bare text in <p> tag (was outside any block element) -->
+<p>
+Explore the different layers of Satoshium &#x2014; from platform and knowledge to experimentation, infrastructure, and real-world expression.
+</p>
 
 <p class="muted">
 The Satoshium ecosystem is organized across multiple domains that represent different layers of the platform.
@@ -374,58 +415,58 @@ The Satoshium ecosystem is organized across multiple domains that represent diff
 <div class="grid-2">
 
 <div class="card">
-<h3>🌐 satoshium.ai</h3>
+<h3>&#x1F310; satoshium.ai</h3>
 <p class="muted">
 Main public platform and primary introduction to the Satoshium ecosystem.
 </p>
-<p><a href="https://satoshium.ai/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.ai/" target="_blank">Visit &#x2192;</a></p>
 </div>
 
 <div class="card">
-<h3>📚 satoshium.info</h3>
+<h3>&#x1F4DA; satoshium.info</h3>
 <p class="muted">
 Knowledge library, education resources, documentation, and long-form reference materials.
 </p>
-<p><a href="https://satoshium.info/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.info/" target="_blank">Visit &#x2192;</a></p>
 </div>
 
 <div class="card">
-<h3>🧪 satoshium.xyz</h3>
+<h3>&#x1F9EA; satoshium.xyz</h3>
 <p class="muted">
 Experimental labs, prototypes, and exploratory system concepts.
 </p>
-<p><a href="https://satoshium.xyz/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.xyz/" target="_blank">Visit &#x2192;</a></p>
 </div>
 
 <div class="card">
-<h3>🛰️ satoshium.net</h3>
+<h3>&#x1F6F0;&#xFE0F; satoshium.net</h3>
 <p class="muted">
 Infrastructure layer for network architecture, systems, and service topology.
 </p>
-<p><a href="https://satoshium.net/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.net/" target="_blank">Visit &#x2192;</a></p>
 </div>
 
 <div class="card">
-<h3>🛍️ satoshium.store</h3>
+<h3>&#x1F6CD;&#xFE0F; satoshium.store</h3>
 <p class="muted">
 Merchandise and cultural layer for symbolic artifacts representing the Satoshium ecosystem.
 </p>
-<p><a href="https://satoshium.store/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.store/" target="_blank">Visit &#x2192;</a></p>
 </div>
 
 <div class="card">
-<h3>📚 satoshium.dev</h3>
+<h3>&#x1F4DA; satoshium.dev</h3>
 <p class="muted">
 Architecture, shared knowledge, verifiable claims, structured systems, and simulation environments.
 </p>
-<p><a href="https://satoshium.dev/" target="_blank">Visit →</a></p>
+<p><a href="https://satoshium.dev/" target="_blank">Visit &#x2192;</a></p>
 </div>
 
 </div>
 
 </div>
- 
-</main>                     
+
+</main>
 <div class="wrap reflection">
 <hr />
 <div id="random-saying" class="muted" style="margin-bottom:14px; max-width:760px;">
@@ -434,6 +475,7 @@ Architecture, shared knowledge, verifiable claims, structured systems, and simul
 <hr />
 
 <div id="footer-container"></div>
+</div>
 
 <script src="/assets/sayings.js"></script>
 <script src="/assets/signal-toggle.js"></script>
